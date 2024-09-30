@@ -97,8 +97,12 @@ for (i in 1:length(models)){
 }
 
 # Add average across transformers
-item_embed[[i+1]] = apply(simplify2array(item_embed)[,,c(1:length(models))], 1:2, mean)
-models[length(models)+1] = 'Average'
+item_embed[[7]] = apply(simplify2array(item_embed)[,,c(1:length(models))], 1:2, mean)
+models[7] = 'Average [Damiano]'
+
+# Add OpenAI model "text-embedding-3-small"
+item_embed[[8]] <- read.csv("Data/cos_matrices/text-embedding-3-small.csv")
+models[8] <- "text-embedding-3-small"
 
 # ----- Make Networks Synth-----
 network_synth = list()
@@ -148,45 +152,45 @@ dev.off()
 # --------------------------------------------
 
 
-# OLD PLOTTING
-# Create the PDF file
-pdf("Figures/EmpNetwork_vandenBerg2020_n.pdf", width = 12, height = 4 * length(network_synth))
-
-# Layout: rows = length(network_synth), columns = 3
-par(mfrow = c(length(network_synth), 1))
-
-# Loop through each network
-for (net in 1:length(network_synth)) {
-
-  # Empirical Network plot
-  #  qgraph(network_emp, layout = "spring", labels = labels,
-  #         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
-  #         mar = rep(7, 4), color = cols, legend = FALSE)
-  #  mtext("Empirical Network", side = 3, line = 1)
-
-  # Embedding Network plot
-  #  qgraph(network_synth[[net]], layout = "spring", labels = labels,
-  #         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
-  #         mar = rep(7, 4), color = cols, legend = FALSE)
-  #  mtext(paste0("Embedding Network", " ", models[net]), side = 3, line = 1)
-
-  # Scatter plot for comparing edges
-  plot(network_emp, network_synth[[net]])
-  plot.window(xlim = c(-0.2, 1), ylim = c(-0.2, 1))
-  axis(1)
-  axis(2, las = 2)
-  abline(0, 1)
-  title(xlab = "Inverse Cosine Similarity [Embedding Network]")
-  title(ylab = "Partial Correlation [Empirical Network]")
-  mtext(paste0("Comparing in empirical and ", models[net], " network"), side = 3, line = 1)
-}
-
-# Close the PDF file
-dev.off()
-
-network_synth[[1]] == 1
-
-
+# # OLD PLOTTING
+# # Create the PDF file
+# pdf("Figures/EmpNetwork_vandenBerg2020_n.pdf", width = 12, height = 4 * length(network_synth))
+#
+# # Layout: rows = length(network_synth), columns = 3
+# par(mfrow = c(length(network_synth), 1))
+#
+# # Loop through each network
+# for (net in 1:length(network_synth)) {
+#
+#   # Empirical Network plot
+#   #  qgraph(network_emp, layout = "spring", labels = labels,
+#   #         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
+#   #         mar = rep(7, 4), color = cols, legend = FALSE)
+#   #  mtext("Empirical Network", side = 3, line = 1)
+#
+#   # Embedding Network plot
+#   #  qgraph(network_synth[[net]], layout = "spring", labels = labels,
+#   #         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
+#   #         mar = rep(7, 4), color = cols, legend = FALSE)
+#   #  mtext(paste0("Embedding Network", " ", models[net]), side = 3, line = 1)
+#
+#   # Scatter plot for comparing edges
+#   plot(network_emp, network_synth[[net]])
+#   plot.window(xlim = c(-0.2, 1), ylim = c(-0.2, 1))
+#   axis(1)
+#   axis(2, las = 2)
+#   abline(0, 1)
+#   title(xlab = "Inverse Cosine Similarity [Embedding Network]")
+#   title(ylab = "Partial Correlation [Empirical Network]")
+#   mtext(paste0("Comparing in empirical and ", models[net], " network"), side = 3, line = 1)
+# }
+#
+# # Close the PDF file
+# dev.off()
+#
+# network_synth[[1]] == 1
+#
+#
 
 
 
