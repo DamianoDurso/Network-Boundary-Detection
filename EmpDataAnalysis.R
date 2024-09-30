@@ -12,14 +12,14 @@
 #In the function below we conduct the following operations
 # 1- copy upper triangle of the matrix to lower triangle
 # 2- align rownames and colnames
-# 3- reorder matrix by the order specified in var 
+# 3- reorder matrix by the order specified in var
 symm <- function(m, var) {
-    m[upper.tri(m)] <- t(m)[upper.tri(m)] 
-    rownames(m) <- colnames(m)
-    orig_order <- colnames(m)
-    ord_ind <- match(var, orig_order)
-    reordered_matrix <- m[ord_ind, ord_ind]
-    return(reordered_matrix)
+  m[upper.tri(m)] <- t(m)[upper.tri(m)]
+  rownames(m) <- colnames(m)
+  orig_order <- colnames(m)
+  ord_ind <- match(var, orig_order)
+  reordered_matrix <- m[ord_ind, ord_ind]
+  return(reordered_matrix)
 }
 
 # --------------------------------------------
@@ -75,7 +75,7 @@ library(RColorBrewer)
 cols <- brewer.pal(3, "Set1")
 
 # --------------------------------------------
-# --------- Synthethic Networks --------------
+# --------- Load Synthethic Networks ---------
 # --------------------------------------------
 
 # ----- Models Synth -----
@@ -91,9 +91,9 @@ names_synth <- c(unlist(dass_21_descriptions, use.names = FALSE))
 
 # Load the matries and align variable names
 for (i in 1:length(models)){
-    temp = as.matrix(read.csv(paste0("Data/cos_matrices/matrix_concatenated_item_", models[i], ".csv")))
-    colnames(temp) = names_synth
-    item_embed[[i]] = symm(temp, names_synth)
+  temp = as.matrix(read.csv(paste0("Data/cos_matrices/matrix_concatenated_item_", models[i], ".csv")))
+  colnames(temp) = names_synth
+  item_embed[[i]] = symm(temp, names_synth)
 }
 
 # Add average across transformers
@@ -103,10 +103,52 @@ models[length(models)+1] = 'Average'
 # ----- Make Networks Synth-----
 network_synth = list()
 
-for (synth in 1:length(item_embed)){
+N_embed <- length(item_embed)
+
+for (synth in 1:N_embed){
   network_synth[[synth]] = cor2pcor(item_embed[[synth]])
 }
 
+
+# --------------------------------------------
+# --------- Compare: Emp vs. Synthetic -------
+# --------------------------------------------
+
+sc <- 0.75
+pdf("Figures/Comparison_DASS21_7Embeddings.pdf", width = 12*sc, height = 12*sc)
+
+# Layout
+par(mfrow=c(3,3))
+
+# Show data
+for(synth in 1:N_embed) {
+
+  # Canvas
+  plot.new()
+  plot.window(xlim = c(-0.2, 1), ylim = c(-0.2, 1))
+  axis(1)
+  axis(2, las = 2)
+  abline(0, 1)
+  title(xlab = "InvCosSim [Synth]")
+  title(ylab = "ParCor [Emp]")
+  mtext(paste0("EmbedMod ='", models[synth], "'"), side = 3, line = 1)
+  # Data
+  v_emp <- network_emp[lower.tri(network_emp)]
+  v_syn <- network_synth[[synth]][lower.tri(network_synth[[synth]])]
+  points(v_emp, v_syn)
+  cor_s <- round(cor(v_emp, v_syn), 2)
+  text(0.3, 0.8, paste0("Cor = ", cor_s), col="steelblue", cex=1.5)
+
+}
+
+dev.off()
+
+# --------------------------------------------
+# --------- DUMP -----------------------------
+# --------------------------------------------
+
+
+# OLD PLOTTING
 # Create the PDF file
 pdf("Figures/EmpNetwork_vandenBerg2020_n.pdf", width = 12, height = 4 * length(network_synth))
 
@@ -115,27 +157,27 @@ par(mfrow = c(length(network_synth), 1))
 
 # Loop through each network
 for (net in 1:length(network_synth)) {
-  
+
   # Empirical Network plot
-#  qgraph(network_emp, layout = "spring", labels = labels, 
-#         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
-#         mar = rep(7, 4), color = cols, legend = FALSE)
-#  mtext("Empirical Network", side = 3, line = 1)
-  
+  #  qgraph(network_emp, layout = "spring", labels = labels,
+  #         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
+  #         mar = rep(7, 4), color = cols, legend = FALSE)
+  #  mtext("Empirical Network", side = 3, line = 1)
+
   # Embedding Network plot
-#  qgraph(network_synth[[net]], layout = "spring", labels = labels, 
-#         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
-#         mar = rep(7, 4), color = cols, legend = FALSE)
-#  mtext(paste0("Embedding Network", " ", models[net]), side = 3, line = 1)
-  
+  #  qgraph(network_synth[[net]], layout = "spring", labels = labels,
+  #         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
+  #         mar = rep(7, 4), color = cols, legend = FALSE)
+  #  mtext(paste0("Embedding Network", " ", models[net]), side = 3, line = 1)
+
   # Scatter plot for comparing edges
   plot(network_emp, network_synth[[net]])
-#  plot.window(xlim = c(-0.2, 1), ylim = c(-0.2, 1))
-#  axis(1)
-#  axis(2, las = 2)
+  plot.window(xlim = c(-0.2, 1), ylim = c(-0.2, 1))
+  axis(1)
+  axis(2, las = 2)
   abline(0, 1)
-#  title(xlab = "Inverse Cosine Similarity [Embedding Network]")
-#  title(ylab = "Partial Correlation [Empirical Network]")
+  title(xlab = "Inverse Cosine Similarity [Embedding Network]")
+  title(ylab = "Partial Correlation [Empirical Network]")
   mtext(paste0("Comparing in empirical and ", models[net], " network"), side = 3, line = 1)
 }
 
