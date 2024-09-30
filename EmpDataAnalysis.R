@@ -80,7 +80,7 @@ cols <- brewer.pal(3, "Set1")
 
 # ----- Models Synth -----
 models = c('distilroberta', 'miniLM', 'mpnet',
-           'e5', 'labse')
+           'e5', 'labse', 'wulff')
 
 # ----- Load Synth -----
 # create empty lists which we will populate with the different cosine matrices
