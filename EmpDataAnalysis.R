@@ -104,6 +104,11 @@ models[7] = 'Average [Damiano]'
 item_embed[[8]] <- read.csv("Data/cos_matrices/text-embedding-3-small.csv")
 models[8] <- "text-embedding-3-small"
 
+# Add OpenAI model "text-embedding-3-small"
+item_embed[[9]] <- read.csv("Data/cos_matrices/text-embedding-3-large.csv")
+models[9] <- "text-embedding-3-large"
+
+
 # ----- Make Networks Synth-----
 network_synth = list()
 
