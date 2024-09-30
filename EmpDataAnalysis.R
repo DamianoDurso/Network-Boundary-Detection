@@ -6,6 +6,21 @@
 
 # We check out some candidate open datasets
 
+# --------------------------------------------
+# --------- Functions ------------------------
+# --------------------------------------------
+#In the function below we conduct the following operations
+# 1- copy upper triangle of the matrix to lower triangle
+# 2- align rownames and colnames
+# 3- reorder matrix by the order specified in var 
+symm <- function(m, var) {
+    m[upper.tri(m)] <- t(m)[upper.tri(m)] 
+    rownames(m) <- colnames(m)
+    orig_order <- colnames(m)
+    ord_ind <- match(var, orig_order)
+    reordered_matrix <- m[ord_ind, ord_ind]
+    return(reordered_matrix)
+}
 
 # --------------------------------------------
 # --------- Load Packages --------------------
@@ -59,34 +74,72 @@ labels <- unlist(dass_21_descriptions)
 library(RColorBrewer)
 cols <- brewer.pal(3, "Set1")
 
-pdf("Figures/EmpNetwork_vandenBerg2020.pdf", width=12, height = 4)
+# --------------------------------------------
+# --------- Synthethic Networks --------------
+# --------------------------------------------
 
-# Layout
-par(mfrow=c(1,3))
+# ----- Models Synth -----
+models = c('distilroberta', 'miniLM', 'mpnet',
+           'e5', 'labse')
 
-# Empirical Network
-qgraph(network_emp, layout="spring", labels=labels, groups=list("Depression"=1:7,
-                                                                "Anxiety"=8:14,
-                                                                "Stress"=15:21),
-       mar=rep(7,4),
-       color = cols, legend=FALSE)
-mtext("Empirical Network")
+# ----- Load Synth -----
+# create empty lists which we will populate with the different cosine matrices
+item_embed = list()
 
-# Embedding Network
-plot.new()
-mtext("Embedding Network")
+# ----- Adjust variable names synth -----
+names_synth <- c(unlist(dass_21_descriptions, use.names = FALSE))
 
-# Relationship Edges
-plot.new()
-plot.window(xlim=c(-.2, 1), ylim=c(-.2, 1))
-axis(1)
-axis(2, las=2)
-abline(0,1)
-title(xlab="Inverse Cosine Similarity [Embedding Network]")
-title(ylab="Partial Correlation [Empirical Network]")
-mtext("Comparing Edges in both Networks")
+# Load the matries and align variable names
+for (i in 1:length(models)){
+    temp = as.matrix(read.csv(paste0("Data/cos_matrices/matrix_concatenated_item_", models[i], ".csv")))
+    colnames(temp) = names_synth
+    item_embed[[i]] = symm(temp, names_synth)
+}
 
+# Add average across transformers
+item_embed[[i+1]] = apply(simplify2array(item_embed)[,,c(1:length(models))], 1:2, mean)
+models[length(models)+1] = 'Average'
 
+# ----- Make Networks Synth-----
+network_synth = list()
+
+for (synth in 1:length(item_embed)){
+  network_synth[[synth]] = cor2pcor(item_embed[[synth]])
+}
+
+# Create the PDF file
+pdf("Figures/EmpNetwork_vandenBerg2020.pdf", width = 12, height = 4 * length(network_synth))
+
+# Layout: rows = length(network_synth), columns = 3
+par(mfrow = c(length(network_synth), 3))
+
+# Loop through each network
+for (net in 1:length(network_synth)) {
+  
+  # Empirical Network plot
+  qgraph(network_emp, layout = "spring", labels = labels, 
+         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
+         mar = rep(7, 4), color = cols, legend = FALSE)
+  mtext("Empirical Network", side = 3, line = 1)
+  
+  # Embedding Network plot
+  qgraph(network_synth[[net]], layout = "spring", labels = labels, 
+         groups = list("Depression" = 1:7, "Anxiety" = 8:14, "Stress" = 15:21),
+         mar = rep(7, 4), color = cols, legend = FALSE)
+  mtext(paste0("Embedding Network", " ", models[net]), side = 3, line = 1)
+  
+  # Scatter plot for comparing edges
+  plot.new()
+  plot.window(xlim = c(-0.2, 1), ylim = c(-0.2, 1))
+  axis(1)
+  axis(2, las = 2)
+  abline(0, 1)
+  title(xlab = "Inverse Cosine Similarity [Embedding Network]")
+  title(ylab = "Partial Correlation [Empirical Network]")
+  mtext("Comparing Edges in both Networks", side = 3, line = 1)
+}
+
+# Close the PDF file
 dev.off()
 
 
