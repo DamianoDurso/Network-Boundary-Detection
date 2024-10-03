@@ -80,7 +80,7 @@ cols <- brewer.pal(3, "Set1")
 
 # ----- Models Synth -----
 models = c('distilroberta', 'miniLM', 'mpnet',
-           'e5', 'labse', 'wulff')
+           'e5', 'labse', 'wulff', 'psych')
 
 # ----- Load Synth -----
 # create empty lists which we will populate with the different cosine matrices
@@ -97,16 +97,16 @@ for (i in 1:length(models)){
 }
 
 # Add average across transformers
-item_embed[[7]] = apply(simplify2array(item_embed)[,,c(1:length(models))], 1:2, mean)
-models[7] = 'Average [Damiano]'
+item_embed[[length(models)+1]] = apply(simplify2array(item_embed)[,,c(5,6)], 1:2, mean)
+models[length(models)+1] = 'Average [Damiano]'
 
 # Add OpenAI model "text-embedding-3-small"
-item_embed[[8]] <- read.csv("Data/cos_matrices/text-embedding-3-small.csv")
-models[8] <- "text-embedding-3-small"
+item_embed[length(models)+1] <- read.csv("Data/cos_matrices/text-embedding-3-small.csv")
+models[length(models)+1] <- "text-embedding-3-small"
 
 # Add OpenAI model "text-embedding-3-small"
-item_embed[[9]] <- read.csv("Data/cos_matrices/text-embedding-3-large.csv")
-models[9] <- "text-embedding-3-large"
+item_embed[[length(models)+1]] <- read.csv("Data/cos_matrices/text-embedding-3-large.csv")
+models[length(models)+1] <- "text-embedding-3-large"
 
 
 # ----- Make Networks Synth-----
