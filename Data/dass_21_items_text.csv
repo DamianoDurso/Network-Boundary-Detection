@@ -1,22 +1,22 @@
 Number,Factor,Item,Item_simp,Sign
-1,Depression,I couldn't seem to experience any positive feeling at all.,Couldn't seem to experience any positive feeling at all,+
-2,Depression,I found it difficult to work up the initiative to do things.,Found it difficult to work up the initiative to do things,+
-3,Depression,I felt that I had nothing to look forward to.,Felt that I had nothing to look forward to,+
-4,Depression,I felt down-hearted and blue.,Felt down-hearted and blue,+
-5,Depression,I was unable to become enthusiastic about anything.,Unable to become enthusiastic about anything,+
-6,Depression,I felt I wasn't worth much as a person.,Felt I wasn't worth much as a person,+
-7,Depression,I felt that life was meaningless.,Felt that life was meaningless,+
-8,Anxiety,I was aware of dryness of my mouth.,Aware of dryness of my mouth,+
-9,Anxiety,"I experienced breathing difficulty (e.g., excessively rapid breathing, breathlessness in the absence of physical exertion).","Experienced breathing difficulty (e.g., excessively rapid breathing, breathlessness in the absence of physical exertion)",+
-10,Anxiety,"I experienced trembling (e.g., in the hands).","Experienced trembling (e.g., in the hands)",+
-11,Anxiety,I was worried about situations in which I might panic and make a fool of myself.,Worried about situations in which I might panic and make a fool of myself,+
-12,Anxiety,I felt I was close to panic.,Felt I was close to panic,+
-13,Anxiety,"I was aware of the action of my heart in the absence of physical exertion (e.g., sense of heart rate increase, heart missing a beat).","Aware of the action of my heart in the absence of physical exertion (e.g., sense of heart rate increase, heart missing a beat)",+
-14,Anxiety,I felt scared without any good reason.,Felt scared without any good reason,+
-15,Stress,I found it hard to wind down.,Found it hard to wind down,+
-16,Stress,I tended to over-react to situations.,Tended to over-react to situations,+
-17,Stress,I felt that I was using a lot of nervous energy.,Felt that I was using a lot of nervous energy,+
-18,Stress,I found myself getting agitated.,Found myself getting agitated,+
-19,Stress,I found it difficult to relax.,Found it difficult to relax,+
-20,Stress,I was intolerant of anything that kept me from getting on with what I was doing.,Intolerant of anything that kept me from getting on with what I was doing,+
-21,Stress,I felt that I was rather touchy.,Felt that I was rather touchy,+
+1,Depression,I couldn't seem to experience any positive feeling at all.,Depression Couldn't seem to experience any positive feeling at all,+
+2,Depression,I found it difficult to work up the initiative to do things.,Depression Found it difficult to work up the initiative to do things,+
+3,Depression,I felt that I had nothing to look forward to.,Depression Felt that I had nothing to look forward to,+
+4,Depression,I felt down-hearted and blue.,Depression Felt down-hearted and blue,+
+5,Depression,I was unable to become enthusiastic about anything.,Depression Unable to become enthusiastic about anything,+
+6,Depression,I felt I wasn't worth much as a person.,Depression Felt I wasn't worth much as a person,+
+7,Depression,I felt that life was meaningless.,Depression Felt that life was meaningless,+
+8,Anxiety,I was aware of dryness of my mouth.,Anxiety Aware of dryness of my mouth,+
+9,Anxiety,"I experienced breathing difficulty (e.g., excessively rapid breathing, breathlessness in the absence of physical exertion).","Anxiety Experienced breathing difficulty (e.g., excessively rapid breathing, breathlessness in the absence of physical exertion)",+
+10,Anxiety,"I experienced trembling (e.g., in the hands).","Anxiety Experienced trembling (e.g., in the hands)",+
+11,Anxiety,I was worried about situations in which I might panic and make a fool of myself.,Anxiety Worried about situations in which I might panic and make a fool of myself,+
+12,Anxiety,I felt I was close to panic.,Anxiety Felt I was close to panic,+
+13,Anxiety,"I was aware of the action of my heart in the absence of physical exertion (e.g., sense of heart rate increase, heart missing a beat).","Anxiety Aware of the action of my heart in the absence of physical exertion (e.g., sense of heart rate increase, heart missing a beat)",+
+14,Anxiety,I felt scared without any good reason.,Anxiety Felt scared without any good reason,+
+15,Stress,I found it hard to wind down.,Stress Found it hard to wind down,+
+16,Stress,I tended to over-react to situations.,Stress Tended to over-react to situations,+
+17,Stress,I felt that I was using a lot of nervous energy.,Stress Felt that I was using a lot of nervous energy,+
+18,Stress,I found myself getting agitated.,Stress Found myself getting agitated,+
+19,Stress,I found it difficult to relax.,Stress Found it difficult to relax,+
+20,Stress,I was intolerant of anything that kept me from getting on with what I was doing.,Stress Intolerant of anything that kept me from getting on with what I was doing,+
+21,Stress,I felt that I was rather touchy.,Stress Felt that I was rather touchy,+
