@@ -72,7 +72,8 @@ big5_descriptions
 # Only problem: I think this is a convenience sample (but then, where do we find a random sample?)
 
 # ----- Load Data -----
-data <- read.csv("Personality_psy/Data/IPIP-FFM-data-Nov/data-final.csv", sep="\t")
+# data set should not be saved on the folder synced to github, because it's too big and you won't be able to push/pull. Ensure that you get the data from a local folder
+data <- read.csv("/Users/damianodurso/Downloads/data_subsetted.csv")
 head(data)
 
 # ----- Subset DASS-21 -----
@@ -127,12 +128,12 @@ item_embed[[length(models)+1]] = apply(simplify2array(item_embed)[,,c(5,6)], 1:2
 models[length(models)+1] = 'Average [Damiano]'
 
 # Add OpenAI model "text-embedding-3-small"
-item_embed[length(models)+1] <- read.csv("Data/cos_matrices/text-embedding-3-small.csv")
-models[length(models)+1] <- "text-embedding-3-small"
+#item_embed[length(models)+1] <- read.csv("Data/cos_matrices/text-embedding-3-small.csv")
+#models[length(models)+1] <- "text-embedding-3-small"
 
 # Add OpenAI model "text-embedding-3-small"
-item_embed[[length(models)+1]] <- read.csv("Data/cos_matrices/text-embedding-3-large.csv")
-models[length(models)+1] <- "text-embedding-3-large"
+#item_embed[[length(models)+1]] <- read.csv("Data/cos_matrices/text-embedding-3-large.csv")
+#models[length(models)+1] <- "text-embedding-3-large"
 
 
 # ----- Make Networks Synth-----
