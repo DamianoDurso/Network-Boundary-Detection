@@ -60,7 +60,7 @@ dass_21_descriptions
 # Only problem: I think this is a convenience sample (but then, where do we find a random sample?)
 
 # ----- Load Data -----
-data <- read.csv("Data/DASS_data_21.02.19/data.csv", sep="\t")
+data <- read.csv("Clinical_Psy/Data/DASS_data_21.02.19/data.csv", sep="\t")
 head(data)
 
 # ----- Subset DASS-21 -----
