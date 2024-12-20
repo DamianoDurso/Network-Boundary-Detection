@@ -91,7 +91,7 @@ names_synth <- c(unlist(dass_21_descriptions, use.names = FALSE))
 
 # Load the matries and align variable names
 for (i in 1:length(models)){
-  temp = as.matrix(read.csv(paste0("Data/cos_matrices/matrix_concatenated_item_", models[i], ".csv")))
+  temp = as.matrix(read.csv(paste0("Clinical_Psy/Data/cos_matrices/matrix_concatenated_item_", models[i], ".csv")))
   colnames(temp) = names_synth
   item_embed[[i]] = symm(temp, names_synth)
 }
@@ -152,6 +152,74 @@ for(synth in 1:N_embed) {
 
 dev.off()
 
+
+# --------------------------------------------
+# --------- Subscale Analysis ----------------
+# --------------------------------------------
+
+# ----- Define Subscale Items -----
+dass_21_subscale_items <- list(
+  Depression = paste0("Q", dass_21_items$Depression, "A"),
+  Anxiety = paste0("Q", dass_21_items$Anxiety, "A"),
+  Stress = paste0("Q", dass_21_items$Stress, "A")
+)
+
+# ----- Empirical Networks for Subscales -----
+network_emp_subscales <- list()
+
+for (scale in names(dass_21_subscale_items)) {
+  subscale_data <- data_ss[, dass_21_subscale_items[[scale]]]
+  network_emp_subscales[[scale]] <- cor2pcor(cor(subscale_data))
+}
+
+# ----- Synthetic Networks for Subscales -----
+network_synth_subscales <- list()
+
+for (scale in names(dass_21_subscale_items)) {
+  network_synth_subscales[[scale]] <- list()
+  subscale_items <- dass_21_descriptions[[scale]]
+
+  for (synth in 1:N_embed) {
+    subscale_matrix <- item_embed[[synth]][subscale_items, subscale_items]
+    network_synth_subscales[[scale]][[synth]] <- cor2pcor(subscale_matrix)
+  }
+}
+
+# --------------------------------------------
+# --------- Compare Subscales ----------------
+# --------------------------------------------
+
+pdf("Figures/Comparison_Subscales_DASS21_7Embeddings.pdf", width = 12, height = 12)
+
+# Layout
+par(mfrow = c(3, 3))
+
+# Compare empirical and synthetic networks for each subscale
+for (scale in names(dass_21_subscale_items)) {
+  for (synth in 1:N_embed) {
+
+    # Canvas
+    plot.new()
+    plot.window(xlim = c(-0.2, 1), ylim = c(-0.2, 1))
+    axis(1)
+    axis(2, las = 2)
+    abline(0, 1)
+    title(xlab = "InvCosSim [Synth]")
+    title(ylab = "ParCor [Emp]")
+    mtext(paste0(scale, " - EmbedMod = '", models[synth], "'"), side = 3, line = 1)
+
+    # Data
+    v_emp <- network_emp_subscales[[scale]][lower.tri(network_emp_subscales[[scale]])]
+    v_syn <- network_synth_subscales[[scale]][[synth]][lower.tri(network_synth_subscales[[scale]][[synth]])]
+    points(v_emp, v_syn)
+    cor_s <- round(cor(v_emp, v_syn), 2)
+    text(0.3, 0.8, paste0("Cor = ", cor_s), col = "steelblue", cex = 1.5)
+
+  }
+}
+
+dev.off()
+
 # --------------------------------------------
 # --------- DUMP -----------------------------
 # --------------------------------------------
@@ -196,7 +264,3 @@ dev.off()
 # network_synth[[1]] == 1
 #
 #
-
-
-
-
