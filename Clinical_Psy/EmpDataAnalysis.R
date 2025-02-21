@@ -1,4 +1,4 @@
-# jonashaslbeck@protonmail.com; Sept 30, 2024
+# jonashaslbeck@protonmail.com; Feb 21st, 2025
 
 # --------------------------------------------
 # --------- What is happening here? ----------
@@ -69,7 +69,8 @@ data_ss <- data[, ind_ss]
 dim(data_ss)
 
 # ----- Make Network -----
-network_emp <- cor2pcor(cor(data_ss))
+# network_emp <- cor2pcor(cor(data_ss))
+network_emp <- cor(data_ss)
 labels <- unlist(dass_21_descriptions)
 library(RColorBrewer)
 cols <- brewer.pal(3, "Set1")
@@ -100,13 +101,13 @@ for (i in 1:length(models)){
 item_embed[[length(models)+1]] = apply(simplify2array(item_embed)[,,c(5,6)], 1:2, mean)
 models[length(models)+1] = 'Average [Damiano]'
 
-# Add OpenAI model "text-embedding-3-small"
-item_embed[length(models)+1] <- read.csv("Data/cos_matrices/text-embedding-3-small.csv")
-models[length(models)+1] <- "text-embedding-3-small"
-
-# Add OpenAI model "text-embedding-3-small"
-item_embed[[length(models)+1]] <- read.csv("Data/cos_matrices/text-embedding-3-large.csv")
-models[length(models)+1] <- "text-embedding-3-large"
+# # Add OpenAI model "text-embedding-3-small"
+# item_embed[length(models)+1] <- read.csv("Files/text-embedding-3-small.csv")
+# models[length(models)+1] <- "text-embedding-3-small"
+#
+# # Add OpenAI model "text-embedding-3-small"
+# item_embed[[length(models)+1]] <- read.csv("Files/text-embedding-3-large.csv")
+# models[length(models)+1] <- "text-embedding-3-large"
 
 
 # ----- Make Networks Synth-----
@@ -115,7 +116,8 @@ network_synth = list()
 N_embed <- length(item_embed)
 
 for (synth in 1:N_embed){
-  network_synth[[synth]] = cor2pcor(item_embed[[synth]])
+  # network_synth[[synth]] = cor2pcor(item_embed[[synth]])
+  network_synth[[synth]] = item_embed[[synth]]
 }
 
 
@@ -124,7 +126,7 @@ for (synth in 1:N_embed){
 # --------------------------------------------
 
 sc <- 0.75
-pdf("Figures/Comparison_DASS21_7Embeddings.pdf", width = 12*sc, height = 12*sc)
+pdf("Figures/Comparison_DASS21_7Embeddings_COR.pdf", width = 12*sc, height = 12*sc)
 
 # Layout
 par(mfrow=c(3,3))
