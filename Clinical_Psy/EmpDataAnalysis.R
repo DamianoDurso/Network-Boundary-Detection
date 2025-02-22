@@ -80,8 +80,8 @@ cols <- brewer.pal(3, "Set1")
 # --------------------------------------------
 
 # ----- Models Synth -----
-models = c('distilroberta', 'miniLM', 'mpnet',
-           'e5', 'labse', 'wulff', 'psych')
+models = c('miniLM', 'mpnet',
+           'e5')
 
 # ----- Load Synth -----
 # create empty lists which we will populate with the different cosine matrices
@@ -97,17 +97,31 @@ for (i in 1:length(models)){
   item_embed[[i]] = symm(temp, names_synth)
 }
 
-# Add average across transformers
-item_embed[[length(models)+1]] = apply(simplify2array(item_embed)[,,c(5,6)], 1:2, mean)
-models[length(models)+1] = 'Average [Damiano]'
+# # Add OpenAI model "text-embedding-3-small"
+item_embed[[length(models)+1]] <- as.matrix(read.csv("Clinical_Psy/Data/cos_matrices/text-embedding-3-large.csv"),21,21)
+colnames(item_embed[[length((models))+1]]) <- rownames(item_embed[[length((models))+1]]) <- names_synth
+models[length(models)+1] <- "text-embedding-3-small"
+##
+## # Add OpenAI model "text-embedding-3-small"
+item_embed[[length(models)+1]] <- as.matrix(read.csv("Clinical_Psy/Data/cos_matrices/text-embedding-3-small.csv"),21,21)
+colnames(item_embed[[length((models))+1]]) <- rownames(item_embed[[length((models))+1]]) <- names_synth
+models[length(models)+1] <- "text-embedding-3-large"
+
 
 # # Add OpenAI model "text-embedding-3-small"
-# item_embed[length(models)+1] <- read.csv("Files/text-embedding-3-small.csv")
-# models[length(models)+1] <- "text-embedding-3-small"
-#
-# # Add OpenAI model "text-embedding-3-small"
-# item_embed[[length(models)+1]] <- read.csv("Files/text-embedding-3-large.csv")
-# models[length(models)+1] <- "text-embedding-3-large"
+#item_embed[length(models)+1] <- read.csv("Files/text-embedding-3-small.csv")
+#models[length(models)+1] <- "text-embedding-3-small"
+##
+## # Add OpenAI model "text-embedding-3-small"
+#item_embed[[length(models)+1]] <- read.csv("Files/text-embedding-3-large.csv")
+#models[length(models)+1] <- "text-embedding-3-large"
+
+item_embed
+
+# Add average across transformers
+item_embed[[length(models)+1]] = apply(simplify2array(item_embed)[,,c(1:5)], 1:2, mean)
+models[length(models)+1] = 'Average [All]'
+
 
 
 # ----- Make Networks Synth-----
@@ -171,7 +185,7 @@ network_emp_subscales <- list()
 
 for (scale in names(dass_21_subscale_items)) {
   subscale_data <- data_ss[, dass_21_subscale_items[[scale]]]
-  network_emp_subscales[[scale]] <- cor2pcor(cor(subscale_data))
+  network_emp_subscales[[scale]] <- cor(subscale_data)
 }
 
 # ----- Synthetic Networks for Subscales -----
@@ -183,7 +197,7 @@ for (scale in names(dass_21_subscale_items)) {
 
   for (synth in 1:N_embed) {
     subscale_matrix <- item_embed[[synth]][subscale_items, subscale_items]
-    network_synth_subscales[[scale]][[synth]] <- cor2pcor(subscale_matrix)
+    network_synth_subscales[[scale]][[synth]] <- cor(subscale_matrix)
   }
 }
 
