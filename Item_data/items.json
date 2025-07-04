@@ -1,42 +1,203 @@
 {
     "Clinical": {
-        "PhQ-9": {"dataframe": []},
-        "DASS21": {
-            "dataframe": [
-                {"Number": 1, "Factor": "Depression", "Format":"Likert 1-4","Item": "I couldn't seem to experience any positive feeling at all."},
-                {"Number": 2, "Factor": "Depression", "Format":"Likert 1-4","Item": "I found it difficult to work up the initiative to do things."},
-                {"Number": 3, "Factor": "Depression", "Format":"Likert 1-4","Item": "I felt that I had nothing to look forward to."},
-                {"Number": 4, "Factor": "Depression", "Format":"Likert 1-4","Item": "I felt down-hearted and blue."},
-                {"Number": 5, "Factor": "Depression", "Format":"Likert 1-4","Item": "I was unable to become enthusiastic about anything."},
-                {"Number": 6, "Factor": "Depression", "Format":"Likert 1-4","Item": "I felt I wasn't worth much as a person."},
-                {"Number": 7, "Factor": "Depression", "Format":"Likert 1-4","Item": "I felt that life was meaningless."},
-                {"Number": 8, "Factor": "Anxiety",    "Format":"Likert 1-4","Item": "I was aware of dryness of my mouth."},
-                {"Number": 9, "Factor": "Anxiety",    "Format":"Likert 1-4","Item": "I experienced breathing difficulty (e.g., excessively rapid breathing, breathlessness in the absence of physical exertion)."},
-                {"Number": 10, "Factor": "Anxiety",   "Format":"Likert 1-4","Item": "I experienced trembling (e.g., in the hands)."},
-                {"Number": 11, "Factor": "Anxiety",   "Format":"Likert 1-4","Item": "I was worried about situations in which I might panic and make a fool of myself."},
-                {"Number": 12, "Factor": "Anxiety",   "Format":"Likert 1-4","Item": "I felt I was close to panic."},
-                {"Number": 13, "Factor": "Anxiety",   "Format":"Likert 1-4","Item": "I was aware of the action of my heart in the absence of physical exertion (e.g., sense of heart rate increase, heart missing a beat)."},
-                {"Number": 14, "Factor": "Anxiety",   "Format":"Likert 1-4","Item": "I felt scared without any good reason."},
-                {"Number": 15, "Factor": "Stress",    "Format":"Likert 1-4","Item": "I found it hard to wind down."},
-                {"Number": 16, "Factor": "Stress",    "Format":"Likert 1-4","Item": "I tended to over-react to situations."},
-                {"Number": 17, "Factor": "Stress",    "Format":"Likert 1-4","Item": "I felt that I was using a lot of nervous energy."},
-                {"Number": 18, "Factor": "Stress",    "Format":"Likert 1-4","Item": "I found myself getting agitated."},
-                {"Number": 19, "Factor": "Stress",    "Format":"Likert 1-4","Item": "I found it difficult to relax."},
-                {"Number": 20, "Factor": "Stress",    "Format":"Likert 1-4","Item": "I was intolerant of anything that kept me from getting on with what I was doing."},
-                {"Number": 21, "Factor": "Stress",    "Format":"Likert 1-4","Item": "I felt that I was rather touchy."}
-            ]
-        },
-        "DTDD": {"dataframe": []},
-        "NPI": {"dataframe": []}
+      "PhQ-9": {"dataframe": []},
+      "DASS21": {
+        "dataframe": [
+          {"Number": 1,  "Factor": "Depression", "Format":"Likert 1-4", "Item": "I couldn't seem to experience any positive feeling at all."},
+          {"Number": 2,  "Factor": "Depression", "Format":"Likert 1-4", "Item": "I found it difficult to work up the initiative to do things."},
+          {"Number": 3,  "Factor": "Depression", "Format":"Likert 1-4", "Item": "I felt that I had nothing to look forward to."},
+          {"Number": 4,  "Factor": "Depression", "Format":"Likert 1-4", "Item": "I felt down-hearted and blue."},
+          {"Number": 5,  "Factor": "Depression", "Format":"Likert 1-4", "Item": "I was unable to become enthusiastic about anything."},
+          {"Number": 6,  "Factor": "Depression", "Format":"Likert 1-4", "Item": "I felt I wasn't worth much as a person."},
+          {"Number": 7,  "Factor": "Depression", "Format":"Likert 1-4", "Item": "I felt that life was meaningless."},
+          {"Number": 8,  "Factor": "Anxiety",    "Format":"Likert 1-4", "Item": "I was aware of dryness of my mouth."},
+          {"Number": 9,  "Factor": "Anxiety",    "Format":"Likert 1-4", "Item": "I experienced breathing difficulty (e.g., excessively rapid breathing, breathlessness in the absence of physical exertion)."},
+          {"Number": 10, "Factor": "Anxiety",    "Format":"Likert 1-4", "Item": "I experienced trembling (e.g., in the hands)."},
+          {"Number": 11, "Factor": "Anxiety",    "Format":"Likert 1-4", "Item": "I was worried about situations in which I might panic and make a fool of myself."},
+          {"Number": 12, "Factor": "Anxiety",    "Format":"Likert 1-4", "Item": "I felt I was close to panic."},
+          {"Number": 13, "Factor": "Anxiety",    "Format":"Likert 1-4", "Item": "I was aware of the action of my heart in the absence of physical exertion (e.g., sense of heart rate increase, heart missing a beat)."},
+          {"Number": 14, "Factor": "Anxiety",    "Format":"Likert 1-4", "Item": "I felt scared without any good reason."},
+          {"Number": 15, "Factor": "Stress",     "Format":"Likert 1-4", "Item": "I found it hard to wind down."},
+          {"Number": 16, "Factor": "Stress",     "Format":"Likert 1-4", "Item": "I tended to over-react to situations."},
+          {"Number": 17, "Factor": "Stress",     "Format":"Likert 1-4", "Item": "I felt that I was using a lot of nervous energy."},
+          {"Number": 18, "Factor": "Stress",     "Format":"Likert 1-4", "Item": "I found myself getting agitated."},
+          {"Number": 19, "Factor": "Stress",     "Format":"Likert 1-4", "Item": "I found it difficult to relax."},
+          {"Number": 20, "Factor": "Stress",     "Format":"Likert 1-4", "Item": "I was intolerant of anything that kept me from getting on with what I was doing."},
+          {"Number": 21, "Factor": "Stress",     "Format":"Likert 1-4", "Item": "I felt that I was rather touchy."}
+        ]
+      },
+      "DTDD": {
+        "dataframe": [
+          {"Number": 1,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "It's not wise to tell your secrets."},
+          {"Number": 2,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "I like to use clever manipulation to get my way."},
+          {"Number": 3,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "Whatever it takes, you must get the important people on your side."},
+          {"Number": 4,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "Avoid direct conflict with others because they may be useful in the future."},
+          {"Number": 5,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "It’s wise to keep track of information that you can use against people later."},
+          {"Number": 6,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "You should wait for the right time to get back at people."},
+          {"Number": 7,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "There are things you should hide from other people because they don’t need to know."},
+          {"Number": 8,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "Make sure your plans benefit you, not others."},
+          {"Number": 9,  "Factor": "Machiavellianism", "Format": "Likert 1-5", "Item": "Most people can be manipulated."},
+          {"Number": 10, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "People see me as a natural leader."},
+          {"Number": 11, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "I hate being the center of attention."},
+          {"Number": 12, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "Many group activities tend to be dull without me."},
+          {"Number": 13, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "I know that I am special because everyone keeps telling me so."},
+          {"Number": 14, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "I like to get acquainted with important people."},
+          {"Number": 15, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "I feel embarrassed if someone compliments me."},
+          {"Number": 16, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "I have been compared to famous people."},
+          {"Number": 17, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "I am an average person."},
+          {"Number": 18, "Factor": "Narcissism",       "Format": "Likert 1-5", "Item": "I insist on getting the respect I deserve."},
+          {"Number": 19, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "I like to get revenge on authorities."},
+          {"Number": 20, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "I avoid dangerous situations."},
+          {"Number": 21, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "Payback needs to be quick and nasty."},
+          {"Number": 22, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "People often say I’m out of control."},
+          {"Number": 23, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "It’s true that I can be mean to others."},
+          {"Number": 24, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "People who mess with me always regret it."},
+          {"Number": 25, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "I have never gotten into trouble with the law."},
+          {"Number": 26, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "I enjoy having sex with people I hardly know."},
+          {"Number": 27, "Factor": "Psychopathy",      "Format": "Likert 1-5", "Item": "I’ll say anything to get what I want."}
+        ]
+      },
+      "NPI": {"dataframe": []}
     },
+  
     "Social": {
-        "RSE": {"dataframe": []},
-        "RWA": {"dataframe": []},
-        "IRI index": {"dataframe": []}
+      "RSE": {
+        "dataframe": [
+          {"Number": 1,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "I feel that I am a person of worth, at least on an equal plane with others."},
+          {"Number": 2,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "I feel that I have a number of good qualities."},
+          {"Number": 3,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "All in all, I am inclined to feel that I am a failure."},
+          {"Number": 4,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "I am able to do things as well as most other people."},
+          {"Number": 5,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "I feel I do not have much to be proud of."},
+          {"Number": 6,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "I take a positive attitude toward myself."},
+          {"Number": 7,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "On the whole, I am satisfied with myself."},
+          {"Number": 8,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "I wish I could have more respect for myself."},
+          {"Number": 9,  "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "I certainly feel useless at times."},
+          {"Number": 10, "Factor": "Self-Esteem", "Format": "Likert 1-4", "Item": "At times I think I am no good at all."}
+        ]
+      },
+  
+      "RWA": {
+        "dataframe": [
+          {"Number": 1,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "The established authorities generally turn out to be right about things, while the radicals and protestors are usually just \"loud mouths\" showing off their ignorance."},
+          {"Number": 2,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Women should have to promise to obey their husbands when they get married."},
+          {"Number": 3,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Our country desperately needs a mighty leader who will do what has to be done to destroy the radical new ways and sinfulness that are ruining us."},
+          {"Number": 4,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Gays and lesbians are just as healthy and moral as anybody else."},
+          {"Number": 5,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "It is always better to trust the judgement of the proper authorities in government and religion than to listen to the noisy rabble-rousers in our society who are trying to create doubt in people's minds."},
+          {"Number": 6,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Atheists and others who have rebelled against the established religions are no doubt every bit as good and virtuous as those who attend church regularly."},
+          {"Number": 7,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "The only way our country can get through the crisis ahead is to get back to our traditional values, put some tough leaders in power, and silence the troublemakers spreading bad ideas."},
+          {"Number": 8,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "There is absolutely nothing wrong with nudist camps."},
+          {"Number": 9,  "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Our country needs free thinkers who have the courage to defy traditional ways, even if this upsets many people."},
+          {"Number": 10, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Our country will be destroyed someday if we do not smash the perversions eating away at our moral fiber and traditional beliefs."},
+          {"Number": 11, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Everyone should have their own lifestyle, religious beliefs, and sexual preferences, even if it makes them different from everyone else."},
+          {"Number": 12, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "The \"old-fashioned ways\" and the \"old-fashioned values\" still show the best way to live."},
+          {"Number": 13, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "You have to admire those who challenged the law and the majority's view by protesting for women's abortion rights, for animal rights, or to abolish school prayer."},
+          {"Number": 14, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "What our country really needs is a strong, determined leader who will crush evil, and take us back to our true path."},
+          {"Number": 15, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Some of the best people in our country are those who are challenging our government, criticizing religion, and ignoring the \"normal way things are supposed to be done.\""},
+          {"Number": 16, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "God's laws about abortion, pornography and marriage must be strictly followed before it is too late, and those who break them must be strongly punished."},
+          {"Number": 17, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "There are many radical, immoral people in our country today, who are trying to ruin it for their own godless purposes, whom the authorities should put out of action."},
+          {"Number": 18, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "A \"woman's place\" should be wherever she wants to be. The days when women are submissive to their husbands and social conventions belong strictly in the past."},
+          {"Number": 19, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Our country will be great if we honor the ways of our forefathers, do what the authorities tell us to do, and get rid of the \"rotten apples\" who are ruining everything."},
+          {"Number": 20, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "There is no \"one right way\" to live life; everybody has to create their own way."},
+          {"Number": 21, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "Homosexuals and feminists should be praised for being brave enough to defy \"traditional family values.\""},
+          {"Number": 22, "Factor": "Authoritarianism", "Format": "Likert 1-7", "Item": "This country would work a lot better if certain groups of troublemakers would just shut up and accept their group's traditional place in society."}
+        ]
+      },
+  
+      "IRI index": {
+        "dataframe": [
+          {"Number": 1,  "Factor": "Fantasy",            "Format": "Likert 1-5", "Item": "I daydream and fantasize, with some regularity, about things that might happen to me."},
+          {"Number": 2,  "Factor": "Empathic concern",   "Format": "Likert 1-5", "Item": "I often have tender, concerned feelings for people less fortunate than me."},
+          {"Number": 3,  "Factor": "Perspective taking", "Format": "Likert 1-5", "Item": "I sometimes find it difficult to see things from the \"other guy's\" point of view."},
+          {"Number": 4,  "Factor": "Empathic concern",   "Format": "Likert 1-5", "Item": "Sometimes I don't feel very sorry for other people when they are having problems."},
+          {"Number": 5,  "Factor": "Fantasy",            "Format": "Likert 1-5", "Item": "I really get involved with the feelings of the characters in a novel."},
+          {"Number": 6,  "Factor": "Personal distress",  "Format": "Likert 1-5", "Item": "In emergency situations, I feel apprehensive and ill-at-ease."},
+          {"Number": 7,  "Factor": "Fantasy",            "Format": "Likert 1-5", "Item": "I am usually objective when I watch a movie or play, and I don't often get completely caught up in it."},
+          {"Number": 8,  "Factor": "Perspective taking", "Format": "Likert 1-5", "Item": "I try to look at everybody's side of a disagreement before I make a decision."},
+          {"Number": 9,  "Factor": "Empathic concern",   "Format": "Likert 1-5", "Item": "When I see someone being taken advantage of, I feel kind of protective towards them."},
+          {"Number": 10, "Factor": "Personal distress",  "Format": "Likert 1-5", "Item": "I sometimes feel helpless when I am in the middle of a very emotional situation."},
+          {"Number": 11, "Factor": "Perspective taking", "Format": "Likert 1-5", "Item": "I sometimes try to understand my friends better by imagining how things look from their perspective"},
+          {"Number": 12, "Factor": "Fantasy",            "Format": "Likert 1-5", "Item": "Becoming extremely involved in a good book or movie is somewhat rare for me."},
+          {"Number": 13, "Factor": "Personal distress",  "Format": "Likert 1-5", "Item": "When I see someone get hurt, I tend to remain calm."},
+          {"Number": 14, "Factor": "Empathic concern",   "Format": "Likert 1-5", "Item": "Other people's misfortunes do not usually disturb me a great deal."},
+          {"Number": 15, "Factor": "Perspective taking", "Format": "Likert 1-5", "Item": "If I'm sure I'm right about something, I don't waste much time listening to other people's arguments."},
+          {"Number": 16, "Factor": "Fantasy",            "Format": "Likert 1-5", "Item": "After seeing a play or movie, I have felt as though I were one of the characters."},
+          {"Number": 17, "Factor": "Personal distress",  "Format": "Likert 1-5", "Item": "Being in a tense emotional situation scares me."},
+          {"Number": 18, "Factor": "Empathic concern",   "Format": "Likert 1-5", "Item": "When I see someone being treated unfairly, I sometimes don't feel very much pity for them."},
+          {"Number": 19, "Factor": "Personal distress",  "Format": "Likert 1-5", "Item": "I am usually pretty effective in dealing with emergencies."},
+          {"Number": 20, "Factor": "Empathic concern",   "Format": "Likert 1-5", "Item": "I am often quite touched by things that I see happen."},
+          {"Number": 21, "Factor": "Perspective taking", "Format": "Likert 1-5", "Item": "I believe that there are two sides to every question and try to look at them both."},
+          {"Number": 22, "Factor": "Empathic concern",   "Format": "Likert 1-5", "Item": "I would describe myself as a pretty soft-hearted person."},
+          {"Number": 23, "Factor": "Fantasy",            "Format": "Likert 1-5", "Item": "When I watch a good movie, I can very easily put myself in the place of a leading character"},
+          {"Number": 24, "Factor": "Personal distress",  "Format": "Likert 1-5", "Item": "I tend to lose control during emergencies."},
+          {"Number": 25, "Factor": "Perspective taking", "Format": "Likert 1-5", "Item": "When I'm upset at someone, I usually try to \"put myself in his shoes\" for a while."},
+          {"Number": 26, "Factor": "Fantasy",            "Format": "Likert 1-5", "Item": "When I am reading an interesting story or novel, I imagine how I would feel if the events in the story were happening to me."},
+          {"Number": 27, "Factor": "Personal distress",  "Format": "Likert 1-5", "Item": "When I see someone who badly needs help in an emergency, I go to pieces."},
+          {"Number": 28, "Factor": "Perspective taking", "Format": "Likert 1-5", "Item": "Before criticizing somebody, I try to imagine how I would feel if I were in their place."}
+        ]
+      }
     },
+  
     "Personality": {
-        "BIG 5": {"dataframe": []},
-        "HEXACO": {"dataframe": []},
-        "NEO-PI": {"dataframe": []}
+        "BIG 5": {
+            "dataframe": [
+              {"Number": 1, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I am the life of the party."},
+              {"Number": 2, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I don't talk a lot."},
+              {"Number": 3, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I feel comfortable around people."},
+              {"Number": 4, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I keep in the background."},
+              {"Number": 5, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I start conversations."},
+              {"Number": 6, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I have little to say."},
+              {"Number": 7, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I talk to a lot of different people at parties."},
+              {"Number": 8, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I don't like to draw attention to myself."},
+              {"Number": 9, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I don't mind being the center of attention."},
+              {"Number": 10, "Factor": "Extraversion", "Format": "Likert 1-5", "Item": "I am quiet around strangers."},
+          
+              {"Number": 11, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I get stressed out easily."},
+              {"Number": 12, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I am relaxed most of the time."},
+              {"Number": 13, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I worry about things."},
+              {"Number": 14, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I seldom feel blue."},
+              {"Number": 15, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I am easily disturbed."},
+              {"Number": 16, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I get upset easily."},
+              {"Number": 17, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I change my mood a lot."},
+              {"Number": 18, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I have frequent mood swings."},
+              {"Number": 19, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I get irritated easily."},
+              {"Number": 20, "Factor": "Neuroticism", "Format": "Likert 1-5", "Item": "I often feel blue."},
+          
+              {"Number": 21, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I feel little concern for others."},
+              {"Number": 22, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I am interested in people."},
+              {"Number": 23, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I insult people."},
+              {"Number": 24, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I sympathize with others' feelings."},
+              {"Number": 25, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I am not interested in other people's problems."},
+              {"Number": 26, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I have a soft heart."},
+              {"Number": 27, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I am not really interested in others."},
+              {"Number": 28, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I take time out for others."},
+              {"Number": 29, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I feel others' emotions."},
+              {"Number": 30, "Factor": "Agreeableness", "Format": "Likert 1-5", "Item": "I make people feel at ease."},
+          
+              {"Number": 31, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I am always prepared."},
+              {"Number": 32, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I leave my belongings around."},
+              {"Number": 33, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I pay attention to details."},
+              {"Number": 34, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I make a mess of things."},
+              {"Number": 35, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I get chores done right away."},
+              {"Number": 36, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I often forget to put things back in their proper place."},
+              {"Number": 37, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I like order."},
+              {"Number": 38, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I shirk my duties."},
+              {"Number": 39, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I follow a schedule."},
+              {"Number": 40, "Factor": "Conscientiousness", "Format": "Likert 1-5", "Item": "I am exacting in my work."},
+          
+              {"Number": 41, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I have a rich vocabulary."},
+              {"Number": 42, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I have difficulty understanding abstract ideas."},
+              {"Number": 43, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I have a vivid imagination."},
+              {"Number": 44, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I am not interested in abstract ideas."},
+              {"Number": 45, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I have excellent ideas."},
+              {"Number": 46, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I do not have a good imagination."},
+              {"Number": 47, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I am quick to understand things."},
+              {"Number": 48, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I use difficult words."},
+              {"Number": 49, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I spend time reflecting on things."},
+              {"Number": 50, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I am full of ideas."}
+            ]
+          },
+      "HEXACO":  {"dataframe": []},
+      "NEO-PI":  {"dataframe": []}
     }
 }
+  
