@@ -196,7 +196,1400 @@
               {"Number": 50, "Factor": "Openness", "Format": "Likert 1-5", "Item": "I am full of ideas."}
             ]
           },
-      "HEXACO":  {"dataframe": []},
+          "HEXACO": {
+            "dataframe": [
+              {"Number": 1,"Factor": "Emotionality","Format": "Likert 1-5","Item": "I love dangerous situations"},
+              {"Number": 2,"Factor": "Emotionality","Format": "Likert 1-5","Item": "I need the approval of others"},
+              {"Number": 3,"Factor": "Extraversion","Format": "Likert 1-5","Item": "I am the life of the party"},
+              {"Number": 4,"Factor": "Agreeableness","Format": "Likert 1-5","Item": "I am quick to judge others"},
+              {"Number": 5,"Factor": "Conscientiousness","Format": "Likert 1-5","Item": "I make careless mistakes"},
+              {"Number": 6,"Factor": "Openness","Format": "Likert 1-5","Item": "I seldom experience sudden intuitive insights"},
+              {"Number": 7,"Factor": "Emotionality","Format": "Likert 1-5","Item": "I feel others' emotions"},
+              {"Number": 8,"Factor": "Openness","Format": "Likert 1-5","Item": "I come up with something new"},
+              {"Number": 9,"Factor": "Honesty-Humility","Format": "Likert 1-5","Item": "I would not enjoy being a famous celebrity"},
+              {"Number": 10,"Factor": "Extraversion","Format": "Likert 1-5","Item": "I tire out quickly"},
+              {
+                "Number": 11,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I face danger confidently"
+              },
+              {
+                "Number": 12,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I react strongly to criticism"
+              },
+              {
+                "Number": 13,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I keep others at a distance"
+              },
+              {
+                "Number": 14,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I seem to derive less enjoyment from interacting with people than others do"
+              },
+              {
+                "Number": 15,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I prefer to eat at expensive restaurants"
+              },
+              {
+                "Number": 16,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I pretend to be concerned for others"
+              },
+              {
+                "Number": 17,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I often worry about things that turn out to be unimportant"
+              },
+              {
+                "Number": 18,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I would never go riding down a stretch of rapids in a canoe"
+              },
+              {
+                "Number": 19,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I rarely get irritated"
+              },
+              {
+                "Number": 20,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I demand quality"
+              },
+              {
+                "Number": 21,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I prefer to just let things happen"
+              },
+              {
+                "Number": 22,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I would not regret my behavior if I were to take advantage of someone impulsively"
+              },
+              {
+                "Number": 23,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I will not probe deeply into a subject"
+              },
+              {
+                "Number": 24,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I am sensitive to the needs of others"
+              },
+              {
+                "Number": 25,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I say little"
+              },
+              {
+                "Number": 26,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I don't know much about history"
+              },
+              {
+                "Number": 27,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I suspect that my facial expressions give me away when I feel sad"
+              },
+              {
+                "Number": 28,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I am good at making impromptu speeches"
+              },
+              {
+                "Number": 29,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I pay too little attention to details"
+              },
+              {
+                "Number": 30,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I do things without thinking of the consequences"
+              },
+              {
+                "Number": 31,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I maintain high energy throughout the day"
+              },
+              {
+                "Number": 32,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I have an eye for detail"
+              },
+              {
+                "Number": 33,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I have excellent ideas"
+              },
+              {
+                "Number": 34,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am usually a patient person"
+              },
+              {
+                "Number": 35,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I steal things"
+              },
+              {
+                "Number": 36,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I need reassurance"
+              },
+              {
+                "Number": 37,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I boast about my virtues"
+              },
+              {
+                "Number": 38,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I do not like art"
+              },
+              {
+                "Number": 39,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I don't think that i'm better than other people"
+              },
+              {
+                "Number": 40,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I feel comfortable around people"
+              },
+              {
+                "Number": 41,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I seldom get mad"
+              },
+              {
+                "Number": 42,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I get upset easily"
+              },
+              {
+                "Number": 43,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I talk to a lot of different people at parties"
+              },
+              {
+                "Number": 44,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I when interacting with a group of people, am often bothered by at least one of them"
+              },
+              {
+                "Number": 45,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I try to forgive and forget"
+              },
+              {
+                "Number": 46,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I make a fool of myself"
+              },
+              {
+                "Number": 47,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I know that my ideas sometimes surprise people"
+              },
+              {
+                "Number": 48,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I get back at people who insult me"
+              },
+              {
+                "Number": 49,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I rarely complain"
+              },
+              {
+                "Number": 50,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I have a rich vocabulary"
+              },
+              {
+                "Number": 51,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I enjoy feeling close to the earth"
+              },
+              {
+                "Number": 52,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I make friends easily"
+              },
+              {
+                "Number": 53,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I want every detail taken care of"
+              },
+              {
+                "Number": 54,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I love my enemies"
+              },
+              {
+                "Number": 55,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I rarely feel angry with people"
+              },
+              {
+                "Number": 56,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I have a strong personality"
+              },
+              {
+                "Number": 57,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I have a good word for everyone"
+              },
+              {
+                "Number": 58,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I tell people about it when i'm irritated"
+              },
+              {
+                "Number": 59,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I have great stamina"
+              },
+              {
+                "Number": 60,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I love luxury"
+              },
+              {
+                "Number": 61,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I would feel very badly for a long time if I were to steal from someone"
+              },
+              {
+                "Number": 62,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I don't finish the things that I start"
+              },
+              {
+                "Number": 63,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I find it difficult to approach others"
+              },
+              {
+                "Number": 64,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I usually like to spend my free time with people"
+              },
+              {
+                "Number": 65,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I admire a really clever scam"
+              },
+              {
+                "Number": 66,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I distrust people"
+              },
+              {
+                "Number": 67,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I can't do without the company of others"
+              },
+              {
+                "Number": 68,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I seldom get emotional"
+              },
+              {
+                "Number": 69,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I enjoy intellectual games"
+              },
+              {
+                "Number": 70,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I am mainly interested in money"
+              },
+              {
+                "Number": 71,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I find it hard to forgive others"
+              },
+              {
+                "Number": 72,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I don't know why I do some of the things I do"
+              },
+              {
+                "Number": 73,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I like to attract attention"
+              },
+              {
+                "Number": 74,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I have a vivid imagination"
+              },
+              {
+                "Number": 75,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I see myself as an average person"
+              },
+              {
+                "Number": 76,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I rarely cry during sad movies"
+              },
+              {
+                "Number": 77,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I work hard"
+              },
+              {
+                "Number": 78,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I don't worry about things that have already happened"
+              },
+              {
+                "Number": 79,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I wish to stay young forever"
+              },
+              {
+                "Number": 80,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am hard to reason with"
+              },
+              {
+                "Number": 81,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I love to think up new ways of doing things"
+              },
+              {
+                "Number": 82,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I speak softly"
+              },
+              {
+                "Number": 83,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I do not have a good imagination"
+              },
+              {
+                "Number": 84,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I feel healthy and vibrant most of the time"
+              },
+              {
+                "Number": 85,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I have difficulty imagining things"
+              },
+              {
+                "Number": 86,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I am considered to be kind of eccentric"
+              },
+              {
+                "Number": 87,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am hard to satisfy"
+              },
+              {
+                "Number": 88,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I don't understand people who get emotional"
+              },
+              {
+                "Number": 89,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I find that it takes a lot to make me feel angry at someone"
+              },
+              {
+                "Number": 90,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I let people push me around to help them feel important"
+              },
+              {
+                "Number": 91,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I would love to explore strange places"
+              },
+              {
+                "Number": 92,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I have read the great literary classics"
+              },
+              {
+                "Number": 93,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I want to be liked"
+              },
+              {
+                "Number": 94,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I don't talk a lot"
+              },
+              {
+                "Number": 95,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I seldom feel weepy while reading the sad part of a story"
+              },
+              {
+                "Number": 96,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I stop when work becomes too difficult"
+              },
+              {
+                "Number": 97,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I smile a lot"
+              },
+              {
+                "Number": 98,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I would be afraid to give a speech in public"
+              },
+              {
+                "Number": 99,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I seek status"
+              },
+              {
+                "Number": 100,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I am deeply moved by others' misfortunes"
+              },
+              {
+                "Number": 101,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am hard to convince"
+              },
+              {
+                "Number": 102,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I push myself very hard to succeed"
+              },
+              {
+                "Number": 103,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I switch my loyalties when I feel like it"
+              },
+              {
+                "Number": 104,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I adjust easily"
+              },
+              {
+                "Number": 105,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I am willing to take risks"
+              },
+              {
+                "Number": 106,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I believe in the importance of art"
+              },
+              {
+                "Number": 107,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I rarely feel depressed"
+              },
+              {
+                "Number": 108,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I don't strive for elegance in my appearance"
+              },
+              {
+                "Number": 109,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I swim against the current"
+              },
+              {
+                "Number": 110,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I rebel against authority"
+              },
+              {
+                "Number": 111,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I get angry easily"
+              },
+              {
+                "Number": 112,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I get upset by unpleasant thoughts that come into my mind"
+              },
+              {
+                "Number": 113,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I return extra change when a cashier makes a mistake"
+              },
+              {
+                "Number": 114,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I get deeply immersed in music"
+              },
+              {
+                "Number": 115,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I bottle up my feelings"
+              },
+              {
+                "Number": 116,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I do not enjoy watching dance performances"
+              },
+              {
+                "Number": 117,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I want everything to be just right"
+              },
+              {
+                "Number": 118,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I rarely worry"
+              },
+              {
+                "Number": 119,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I pay attention to details"
+              },
+              {
+                "Number": 120,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I am out for my own personal gain"
+              },
+              {
+                "Number": 121,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I am never at a loss for words"
+              },
+              {
+                "Number": 122,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I do things that others find strange"
+              },
+              {
+                "Number": 123,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I love to chat"
+              },
+              {
+                "Number": 124,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I would like to have more power than other people"
+              },
+              {
+                "Number": 125,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I like to tidy up"
+              },
+              {
+                "Number": 126,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I try to impress others"
+              },
+              {
+                "Number": 127,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I continue until everything is perfect"
+              },
+              {
+                "Number": 128,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I would fear walking in a high-crime part of a city"
+              },
+              {
+                "Number": 129,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I let myself be influenced by others"
+              },
+              {
+                "Number": 130,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I would be good at rescuing people from a burning building"
+              },
+              {
+                "Number": 131,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I keep in the background"
+              },
+              {
+                "Number": 132,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I hate being the center of attention"
+              },
+              {
+                "Number": 133,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I get irritated easily"
+              },
+              {
+                "Number": 134,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I have an intense, boisterous laugh"
+              },
+              {
+                "Number": 135,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I take things as they come"
+              },
+              {
+                "Number": 136,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I am hard to get to know"
+              },
+              {
+                "Number": 137,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I have a sharp tongue"
+              },
+              {
+                "Number": 138,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I leave my belongings around"
+              },
+              {
+                "Number": 139,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I seek support"
+              },
+              {
+                "Number": 140,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I laugh a lot"
+              },
+              {
+                "Number": 141,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I see beauty in things that others might not notice"
+              },
+              {
+                "Number": 142,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I would hate to be considered odd or strange"
+              },
+              {
+                "Number": 143,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I criticize others' shortcomings"
+              },
+              {
+                "Number": 144,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am good at taking advice"
+              },
+              {
+                "Number": 145,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I am usually active and full of energy"
+              },
+              {
+                "Number": 146,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I would not enjoy a job that involves a lot of social interaction"
+              },
+              {
+                "Number": 147,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I often forget to put things back in their proper place"
+              },
+              {
+                "Number": 148,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I find it necessary to please the people who have power"
+              },
+              {
+                "Number": 149,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I have little to say"
+              },
+              {
+                "Number": 150,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I feel that I have a lot of inner strength"
+              },
+              {
+                "Number": 151,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I hang around doing nothing"
+              },
+              {
+                "Number": 152,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I am a physical coward"
+              },
+              {
+                "Number": 153,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I cheat to get ahead"
+              },
+              {
+                "Number": 154,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I often feel blue"
+              },
+              {
+                "Number": 155,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I keep things tidy"
+              },
+              {
+                "Number": 156,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I get stressed out easily"
+              },
+              {
+                "Number": 157,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I do not like poetry"
+              },
+              {
+                "Number": 158,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I have a strong need for power"
+              },
+              {
+                "Number": 159,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I detect mistakes"
+              },
+              {
+                "Number": 160,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I enjoy being part of a group"
+              },
+              {
+                "Number": 161,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I like to be viewed as proper and conventional"
+              },
+              {
+                "Number": 162,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I need protection"
+              },
+              {
+                "Number": 163,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I find fault with everything"
+              },
+              {
+                "Number": 164,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I make rash decisions"
+              },
+              {
+                "Number": 165,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I often need help"
+              },
+              {
+                "Number": 166,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I use flattery to get ahead"
+              },
+              {
+                "Number": 167,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I find political discussions interesting"
+              },
+              {
+                "Number": 168,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I accept people as they are"
+              },
+              {
+                "Number": 169,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I believe that I am better than others"
+              },
+              {
+                "Number": 170,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I am exacting in my work"
+              },
+              {
+                "Number": 171,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I dislike imperfect work"
+              },
+              {
+                "Number": 172,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I avoid mistakes"
+              },
+              {
+                "Number": 173,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I try to avoid complex people"
+              },
+              {
+                "Number": 174,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I love to read challenging material"
+              },
+              {
+                "Number": 175,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I tremble in dangerous situations"
+              },
+              {
+                "Number": 176,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I like to do frightening things"
+              },
+              {
+                "Number": 177,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I talk a lot"
+              },
+              {
+                "Number": 178,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I don't like to draw attention to myself"
+              },
+              {
+                "Number": 179,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I do too little work"
+              },
+              {
+                "Number": 180,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I rarely enjoy being with people"
+              },
+              {
+                "Number": 181,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I play a role in order to impress people"
+              },
+              {
+                "Number": 182,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I try to follow the rules"
+              },
+              {
+                "Number": 183,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I don't mind being the center of attention"
+              },
+              {
+                "Number": 184,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I get started quickly on doing a job"
+              },
+              {
+                "Number": 185,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I consider myself an average person"
+              },
+              {
+                "Number": 186,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I get upset if others change the way that I have arranged things"
+              },
+              {
+                "Number": 187,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am inclined to forgive others"
+              },
+              {
+                "Number": 188,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I speak ill of others"
+              },
+              {
+                "Number": 189,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I am likely to show off if I get the chance"
+              },
+              {
+                "Number": 190,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I enjoy being thought of as a normal mainstream person"
+              },
+              {
+                "Number": 191,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I am not easily disturbed by events"
+              },
+              {
+                "Number": 192,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I have trouble guessing how others will react"
+              },
+              {
+                "Number": 193,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I carry the conversation to a higher level"
+              },
+              {
+                "Number": 194,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I am not bothered by disorder"
+              },
+              {
+                "Number": 195,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I feel that most people can't be trusted"
+              },
+              {
+                "Number": 196,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I remain calm under pressure"
+              },
+              {
+                "Number": 197,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I panic easily"
+              },
+              {
+                "Number": 198,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I act like different people in different situations"
+              },
+              {
+                "Number": 199,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I do just enough work to get by"
+              },
+              {
+                "Number": 200,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I want everything to add up perfectly"
+              },
+              {
+                "Number": 201,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I make plans and stick to them"
+              },
+              {
+                "Number": 202,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am nice to people I should be angry at"
+              },
+              {
+                "Number": 203,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I hold a grudge"
+              },
+              {
+                "Number": 204,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I would never take things that aren't mine"
+              },
+              {
+                "Number": 205,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I seldom notice the emotional aspects of paintings and pictures"
+              },
+              {
+                "Number": 206,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I cheat on people who have trusted me"
+              },
+              {
+                "Number": 207,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I like to be thought of as a normal kind of person"
+              },
+              {
+                "Number": 208,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I avoid difficult reading material"
+              },
+              {
+                "Number": 209,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I begin to panic when there is danger"
+              },
+              {
+                "Number": 210,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I would never cheat on my taxes"
+              },
+              {
+                "Number": 211,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I put on a show to impress people"
+              },
+              {
+                "Number": 212,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I am just an ordinary person"
+              },
+              {
+                "Number": 213,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I become frustrated and angry with people when they don't live up to my expectations"
+              },
+              {
+                "Number": 214,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I get chores done right away"
+              },
+              {
+                "Number": 215,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I jump into things without thinking"
+              },
+              {
+                "Number": 216,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I have a lot of fun"
+              },
+              {
+                "Number": 217,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I get even with others"
+              },
+              {
+                "Number": 218,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I am more capable than most others"
+              },
+              {
+                "Number": 219,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I worry about things"
+              },
+              {
+                "Number": 220,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I can't stand being contradicted"
+              },
+              {
+                "Number": 221,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I am seldom bothered by the apparent suffering of strangers"
+              },
+              {
+                "Number": 222,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I cry during movies"
+              },
+              {
+                "Number": 223,
+                "Factor": "Extraversion",
+                "Format": "Likert 1-5",
+                "Item": "I have leadership abilities"
+              },
+              {
+                "Number": 224,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I leave a mess in my room"
+              },
+              {
+                "Number": 225,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am annoyed by others' mistakes"
+              },
+              {
+                "Number": 226,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I immediately feel sad when hearing of an unhappy event"
+              },
+              {
+                "Number": 227,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I quickly lose interest in the tasks I start"
+              },
+              {
+                "Number": 228,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I complete tasks successfully"
+              },
+              {
+                "Number": 229,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I am interested in science"
+              },
+              {
+                "Number": 230,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I like order"
+              },
+              {
+                "Number": 231,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I do things according to a plan"
+              },
+              {
+                "Number": 232,
+                "Factor": "Emotionality",
+                "Format": "Likert 1-5",
+                "Item": "I show my sadness"
+              },
+              {
+                "Number": 233,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I tell other people what they want to hear so that they will do what I want them to do"
+              },
+              {
+                "Number": 234,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I lose my temper"
+              },
+              {
+                "Number": 235,
+                "Factor": "Conscientiousness",
+                "Format": "Likert 1-5",
+                "Item": "I act impulsively when something is bothering me"
+              },
+              {
+                "Number": 236,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I don't bother worrying about political and social problems"
+              },
+              {
+                "Number": 237,
+                "Factor": "Agreeableness",
+                "Format": "Likert 1-5",
+                "Item": "I am easily annoyed"
+              },
+              {
+                "Number": 238,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I do not like concerts"
+              },
+              {
+                "Number": 239,
+                "Factor": "Honesty-Humility",
+                "Format": "Likert 1-5",
+                "Item": "I don't pretend to be more than I am"
+              },
+              {
+                "Number": 240,
+                "Factor": "Openness",
+                "Format": "Likert 1-5",
+                "Item": "I am full of ideas"
+              }
+            ]
+          },
       "NEO-PI":  {"dataframe": []}
     }
 }
