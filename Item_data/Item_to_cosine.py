@@ -55,8 +55,8 @@ class PsychologicalTestAnalyzer:
             # Save the matrix as CSV
             matrices.append(pd.DataFrame(
                 cosine_sim_matrix, 
-                columns=df_items['Item'].unique(), 
-                index=df_items['Item'].unique()
+                columns=df_items['Identifier'].unique(), 
+                index=df_items['Identifier'].unique()
             ))
         return matrices
 
