@@ -76,6 +76,37 @@ dataset <- redivis::user("datapages")$dataset("item_response_warehouse") # conne
 # list-column to hold empirical correlation matrices
 df_cosines$empirical_corr <- vector("list", nrow(df_cosines))
 
+# Helper: safe polychoric with better defaults and fallback
+safe_polychoric <- function(wide) {
+  # Ensure ordered factors
+  wide_pf <- data.frame(lapply(wide, function(x) {
+    if (is.numeric(x) || is.integer(x)) {
+      ordered(x)
+    } else {
+      ordered(as.character(x))
+    }
+  }))
+  
+  # Try polychoric with global = FALSE and correct = 0 (to avoid the "try setting correct=0" issue)
+  pc <- tryCatch(
+    suppressWarnings(
+      psych::polychoric(
+        wide_pf,
+        global  = FALSE,  # allow unequal response alternatives
+        correct = 0,      # avoid polycor continuity corrections that sometimes break
+        smooth  = TRUE
+      )
+    ),
+    error = function(e) e
+  )
+  
+  if (inherits(pc, "error")) {
+    stop(pc)
+  }
+  
+  pc$rho
+}
+
 # Helper: compute correlation matrix for a long-format data frame
 compute_corr_from_long <- function(d, corr_type) {
   # 1) Identify key columns
@@ -113,22 +144,31 @@ compute_corr_from_long <- function(d, corr_type) {
   
   # 3) Correlation
   if (corr_type == "polychoric") {
-    # Ensure ordered factors for polychoric
-    wide_pf <- data.frame(lapply(wide, function(x) {
-      if (is.numeric(x) || is.integer(x)) {
-        ordered(x)
-      } else {
-        ordered(as.character(x))
-      }
-    }))
-    psych::polychoric(wide_pf)$rho
+    # Try polychoric; if it fails, fall back to Pearson on numeric coding
+    rho <- tryCatch(
+      safe_polychoric(wide),
+      error = function(e) e
+    )
+    if (inherits(rho, "error")) {
+      warning("Polychoric failed (", conditionMessage(rho), 
+              "); falling back to Pearson for this subset.")
+      wide_num <- data.frame(lapply(wide, function(x) as.numeric(as.factor(x))))
+      return(psych::cor.wt(wide_num, cor = TRUE, method = "pearson")$cor)
+    }
+    return(rho)
+    
   } else {
     # Pearson correlations
-    psych::cor.wt(wide, cor = TRUE, method = "pearson")$cor
+    # If resp are factors/characters, coerce to numeric codes
+    wide_num <- data.frame(lapply(wide, function(x) {
+      if (is.numeric(x) || is.integer(x)) x else as.numeric(as.factor(x))
+    }))
+    psych::cor.wt(wide_num, cor = TRUE, method = "pearson")$cor
   }
 }
 
-# Main loop over scales
+# ------------------ MAIN LOOP OVER SCALES ------------------ #
+
 for (scale in seq_len(nrow(df_cosines))) {
   scale_id <- df_cosines$scale_id[scale]
   message("Processing scale: ", scale_id, " (row ", scale, ")")
@@ -248,70 +288,58 @@ for (scale in seq_len(nrow(df_cosines))) {
 is.na(df_cosines$empirical_corr)
 df_cosines$empirical_corr[1]
 
+
 warnings()
+empirical_mat
 #Warning messages:
 #1: Could not load dataset for scale_id = 360emergencymed_azami_2024; setting empirical_corr to NA
-#2: In psych::polychoric(wide_pf) :
-#  The items do not have an equal number of response alternatives, global set to FALSE.
-#3: In matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy) :
-#  66 cells were adjusted for 0 values using the correction for continuity. Examine your data carefully.
-#4: In cor.smooth(mat) : Matrix was not positive definite, smoothing was done
-#5: In psych::polychoric(wide_pf) :
-#  The items do not have an equal number of response alternatives, global set to FALSE.
-#6: In mclapply(seq_len(n), do_one, mc.preschedule = mc.preschedule,  ... :
-#  scheduled core 1 encountered error in user code, all values of the job will be affected
-#7: In matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy) :
-#  Something is wrong in polycor  -- Try setting correct=0 
-#8:     Correlation failed for wave = 2 in scale_id = coach_chen_2022_hdrs
-#9: In psych::polychoric(wide_pf) :
-#  The items do not have an equal number of response alternatives, global set to FALSE.
-#10: In matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy) :
-#  45 cells were adjusted for 0 values using the correction for continuity. Examine your data carefully.
-#11: In cor.smooth(mat) : Matrix was not positive definite, smoothing was done
-#12: In psych::polychoric(wide_pf) :
-#  The items do not have an equal number of response alternatives, global set to FALSE.
-#13: In matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy) :
-#  66 cells were adjusted for 0 values using the correction for continuity. Examine your data carefully.
-#14: In cor.smooth(mat) : Matrix was not positive definite, smoothing was done
-#15: In psych::polychoric(wide_pf) :
-#  The items do not have an equal number of response alternatives, global set to FALSE.
-#16: In mclapply(seq_len(n), do_one, mc.preschedule = mc.preschedule,  ... :
-#  all scheduled cores encountered errors in user code
-#17: In matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy) :
-#  Something is wrong in polycor  -- Try setting correct=0 
-#18:     Correlation failed for wave = 5 in scale_id = coach_chen_2022_hdrs
-#19: In psych::polychoric(wide_pf) :
-#  The items do not have an equal number of response alternatives, global set to FALSE.
-#20: In mclapply(seq_len(n), do_one, mc.preschedule = mc.preschedule,  ... :
-#  scheduled core 2 encountered error in user code, all values of the job will be affected
-#21: In matpLower(x, nvar, gminx, gmaxx, gminy, gmaxy) :
-#  Something is wrong in polycor  -- Try setting correct=0 
-#22:     Correlation failed for wave = 6 in scale_id = coach_chen_2022_hdrs
-#23: No or too few common items across waves for scale_id = coach_chen_2022_hdrs
-#24: No or too few common items across waves for scale_id = coach_chen_2022_phq9
-#25: In matrix(as.numeric(x), ncol = nvar) : NAs introduced by coercion
-#26: Could not load dataset for scale_id = fcv19s_hossain_2022_anxiety; setting empirical_corr to NA
-#27: Could not load dataset for scale_id = fcv19s_hossain_2022_depression; setting empirical_corr to NA
-#28: Correlation computation failed for scale_id = gilbert_meta_1
-#29: Correlation computation failed for scale_id = gilbert_meta_100
-#30: Correlation computation failed for scale_id = gilbert_meta_11
-#31: Correlation computation failed for scale_id = gilbert_meta_12
-#32: No or too few common items across waves for scale_id = gilbert_meta_34
-#33:     Correlation failed for wave = 0 in scale_id = gilbert_meta_49
-#34:     Correlation failed for wave = 1 in scale_id = gilbert_meta_49
-#35:     Correlation failed for wave = 2 in scale_id = gilbert_meta_49
-#36: No valid correlation matrices for any wave in scale_id = gilbert_meta_49
-#37:     Correlation failed for wave = 0 in scale_id = gilbert_meta_53
-#38:     Correlation failed for wave = 1 in scale_id = gilbert_meta_53
-#39: No valid correlation matrices for any wave in scale_id = gilbert_meta_53
-#40: No or too few common items across waves for scale_id = gilbert_meta_54
-#41:     Correlation failed for wave = 0 in scale_id = gilbert_meta_56
-#42:     Correlation failed for wave = 1 in scale_id = gilbert_meta_56
-#43: No valid correlation matrices for any wave in scale_id = gilbert_meta_56
-#44: No or too few common items across waves for scale_id = gilbert_meta_57
-#45: No or too few common items across waves for scale_id = gilbert_meta_59
-#46: No or too few common items across waves for scale_id = gilbert_meta_62
-#47: Correlation computation failed for scale_id = gilbert_meta_7
-#48: Correlation computation failed for scale_id = gilbert_meta_8
-#49:     Correlation failed for wave = 0 in scale_id = gilbert_meta_88
-#50:     Correlation failed for wave = 1 in scale_id = gilbert_meta_88
+#2: No or too few common items across waves for scale_id = coach_chen_2022_hdrs
+#3: No or too few common items across waves for scale_id = coach_chen_2022_phq9
+#4: Could not load dataset for scale_id = fcv19s_hossain_2022_anxiety; setting empirical_corr to NA
+#5: Could not load dataset for scale_id = fcv19s_hossain_2022_depression; setting empirical_corr to NA
+#6: Correlation computation failed for scale_id = gilbert_meta_1
+#7: Correlation computation failed for scale_id = gilbert_meta_100
+#8: Correlation computation failed for scale_id = gilbert_meta_11
+#9: Correlation computation failed for scale_id = gilbert_meta_12
+#10: No or too few common items across waves for scale_id = gilbert_meta_34
+#11:     Correlation failed for wave = 0 in scale_id = gilbert_meta_49
+#12:     Correlation failed for wave = 1 in scale_id = gilbert_meta_49
+#13:     Correlation failed for wave = 2 in scale_id = gilbert_meta_49
+#14: No valid correlation matrices for any wave in scale_id = gilbert_meta_49
+#15:     Correlation failed for wave = 0 in scale_id = gilbert_meta_53
+#16:     Correlation failed for wave = 1 in scale_id = gilbert_meta_53
+#17: No valid correlation matrices for any wave in scale_id = gilbert_meta_53
+#18: No or too few common items across waves for scale_id = gilbert_meta_54
+#19:     Correlation failed for wave = 0 in scale_id = gilbert_meta_56
+#20:     Correlation failed for wave = 1 in scale_id = gilbert_meta_56
+#21: No valid correlation matrices for any wave in scale_id = gilbert_meta_56
+#22: No or too few common items across waves for scale_id = gilbert_meta_57
+#23: No or too few common items across waves for scale_id = gilbert_meta_59
+#24: No or too few common items across waves for scale_id = gilbert_meta_62
+#25: Correlation computation failed for scale_id = gilbert_meta_7
+#26: Correlation computation failed for scale_id = gilbert_meta_8
+#27:     Correlation failed for wave = 0 in scale_id = gilbert_meta_88
+#28:     Correlation failed for wave = 1 in scale_id = gilbert_meta_88
+#29: No valid correlation matrices for any wave in scale_id = gilbert_meta_88
+#30:     Correlation failed for wave = 0 in scale_id = gilbert_meta_89
+#31:     Correlation failed for wave = 1 in scale_id = gilbert_meta_89
+#32: No valid correlation matrices for any wave in scale_id = gilbert_meta_89
+#33:     Correlation failed for wave = 1 in scale_id = gilbert_meta_90
+#34: No valid correlation matrices for any wave in scale_id = gilbert_meta_90
+#35: No or too few common items across waves for scale_id = gilbert_meta_91
+#36: No or too few common items across waves for scale_id = gilbert_meta_92
+#37: No or too few common items across waves for scale_id = oxfordcovid_xue_2024_gad
+#38:     Correlation failed for wave = 0 in scale_id = oxfordcovid_xue_2024_mh
+#39:     Correlation failed for wave = 17 in scale_id = oxfordcovid_xue_2024_mh
+#40:     Correlation failed for wave = 23 in scale_id = oxfordcovid_xue_2024_mh
+#41: No valid correlation matrices for any wave in scale_id = oxfordcovid_xue_2024_mh
+#42: No or too few common items across waves for scale_id = oxfordcovid_xue_2024_phq
+#43: Values from `resp` are not uniquely identified; output will contain list-cols.
+#• Use `values_fn = list` to suppress this warning.
+#• Use `values_fn = {summary_fun}` to summarise duplicates.
+#• Use the following dplyr code to identify duplicates.
+#  {data} |>
+#  dplyr::summarise(n = dplyr::n(), .by = c(id, item)) |>
+#  dplyr::filter(n > 1L)
+#44: Correlation computation failed for scale_id = political_psychology
+#45: Correlation computation failed for scale_id = spanishmegastudy
