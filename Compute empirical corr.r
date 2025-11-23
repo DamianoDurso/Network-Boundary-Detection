@@ -292,4 +292,7 @@ df_cosines$empirical_corr <- empirical_list
 
 is.na(df_cosines$empirical_corr)
 
+#Example calculate corr for wave data
+cor(as.numeric(df_cosines$gpt3.large[2][[1]]), as.numeric(df_cosines$empirical_corr[[2]]$`2`))
+
 write.csv(df_cosines, 'cosine_and_corr.csv')
