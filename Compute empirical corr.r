@@ -76,7 +76,8 @@ dataset <- redivis::user("datapages")$dataset("item_response_warehouse") # conne
 # list-column to hold empirical correlation matrices
 df_cosines$empirical_corr <- vector("list", nrow(df_cosines))
 
-# Helper: safe polychoric with better defaults and fallback
+#---------------- helper: safe polychoric ----------------#
+
 safe_polychoric <- function(wide) {
   # Ensure ordered factors
   wide_pf <- data.frame(lapply(wide, function(x) {
@@ -87,13 +88,13 @@ safe_polychoric <- function(wide) {
     }
   }))
   
-  # Try polychoric with global = FALSE and correct = 0 (to avoid the "try setting correct=0" issue)
+  # Try polychoric with global = FALSE and correct = 0
   pc <- tryCatch(
     suppressWarnings(
       psych::polychoric(
         wide_pf,
         global  = FALSE,  # allow unequal response alternatives
-        correct = 0,      # avoid polycor continuity corrections that sometimes break
+        correct = 0,      # avoid the "try setting correct=0" error
         smooth  = TRUE
       )
     ),
@@ -107,7 +108,8 @@ safe_polychoric <- function(wide) {
   pc$rho
 }
 
-# Helper: compute correlation matrix for a long-format data frame
+#---------------- helper: long -> corr matrix ----------------#
+
 compute_corr_from_long <- function(d, corr_type) {
   # 1) Identify key columns
   id_col <- "id"
@@ -153,7 +155,7 @@ compute_corr_from_long <- function(d, corr_type) {
       warning("Polychoric failed (", conditionMessage(rho), 
               "); falling back to Pearson for this subset.")
       wide_num <- data.frame(lapply(wide, function(x) as.numeric(as.factor(x))))
-      return(psych::cor.wt(wide_num, cor = TRUE, method = "pearson")$cor)
+      return(psych::cor.wt(wide_num, cor = TRUE)$cor)
     }
     return(rho)
     
@@ -163,11 +165,13 @@ compute_corr_from_long <- function(d, corr_type) {
     wide_num <- data.frame(lapply(wide, function(x) {
       if (is.numeric(x) || is.integer(x)) x else as.numeric(as.factor(x))
     }))
-    psych::cor.wt(wide_num, cor = TRUE, method = "pearson")$cor
+    psych::cor.wt(wide_num, cor = TRUE)$cor
   }
 }
+#---------------- main loop over scales ----------------#
 
-# ------------------ MAIN LOOP OVER SCALES ------------------ #
+# We'll fill this and assign to df_cosines at the end
+empirical_list <- vector("list", nrow(df_cosines))
 
 for (scale in seq_len(nrow(df_cosines))) {
   scale_id <- df_cosines$scale_id[scale]
@@ -182,7 +186,7 @@ for (scale in seq_len(nrow(df_cosines))) {
   if (inherits(df_long, "try-error")) {
     warning("Could not load dataset for scale_id = ", scale_id, 
             "; setting empirical_corr to NA")
-    df_cosines$empirical_corr[[scale]] <- NA
+    empirical_list[[scale]] <- NA
     next
   }
   
@@ -190,7 +194,7 @@ for (scale in seq_len(nrow(df_cosines))) {
   if (!all(c("id", "resp") %in% names(df_long))) {
     warning("Dataset for scale_id = ", scale_id, 
             " does not contain required columns 'id' and 'resp'; setting empirical_corr to NA")
-    df_cosines$empirical_corr[[scale]] <- NA
+    empirical_list[[scale]] <- NA
     next
   }
   
@@ -199,7 +203,7 @@ for (scale in seq_len(nrow(df_cosines))) {
   if (nrow(df_long) == 0) {
     warning("No non-missing responses for scale_id = ", scale_id,
             "; setting empirical_corr to NA")
-    df_cosines$empirical_corr[[scale]] <- NA
+    empirical_list[[scale]] <- NA
     next
   }
   
@@ -216,13 +220,14 @@ for (scale in seq_len(nrow(df_cosines))) {
   message("  Using ", corr_type, " correlations with ", n_cat, " response categories.")
   
   has_wave <- "wave" %in% names(df_long)
-  cor_mats <- list()
   
   #--- 3. With or without wave ------------------------------------#
   if (has_wave) {
     waves <- sort(unique(df_long$wave))
     message("  Found wave column with ", length(waves), " waves: ",
             paste(waves, collapse = ", "))
+    
+    wave_mats <- list()
     
     for (w in waves) {
       df_w <- df_long[df_long$wave == w & !is.na(df_long$wave), ]
@@ -233,41 +238,41 @@ for (scale in seq_len(nrow(df_cosines))) {
         warning("    Correlation failed for wave = ", w, " in scale_id = ", scale_id)
         next
       }
-      cor_mats[[as.character(w)]] <- cm
+      
+      wave_mats[[as.character(w)]] <- cm
     }
     
-    if (length(cor_mats) == 0) {
+    if (length(wave_mats) == 0) {
       warning("No valid correlation matrices for any wave in scale_id = ", scale_id)
-      df_cosines$empirical_corr[[scale]] <- NA
+      empirical_list[[scale]] <- NA
       next
     }
     
-    # Align matrices on common items (columns/rows) and average
-    common_items <- Reduce(intersect, lapply(cor_mats, colnames))
-    if (length(common_items) < 2) {
-      warning("No or too few common items across waves for scale_id = ", scale_id)
-      df_cosines$empirical_corr[[scale]] <- NA
-      next
-    }
-    
-    cor_mats_aligned <- lapply(cor_mats, function(m) m[common_items, common_items, drop = FALSE])
-    empirical_mat <- Reduce("+", cor_mats_aligned) / length(cor_mats_aligned)
+    # Store wave-specific corr matrices as a list for this scale
+    empirical_object <- wave_mats
     
   } else {
+    
     message("  No wave column; computing single correlation matrix.")
-    empirical_mat <- try(compute_corr_from_long(df_long, corr_type), silent = TRUE)
+    
+    empirical_mat <- try(compute_corr_from_long(df_long, corr_type), silent = FALSE)
     
     if (inherits(empirical_mat, "try-error")) {
       warning("Correlation computation failed for scale_id = ", scale_id)
-      df_cosines$empirical_corr[[scale]] <- NA
+      empirical_list[[scale]] <- NA
       next
     }
+    
+    empirical_object <- empirical_mat
   }
   
-  #--- 4. Store empirical correlation matrix in df_cosines --------#
-  df_cosines$empirical_corr[[scale]] <- empirical_mat
+  #--- 4. Store into list --------------------------------#
+  empirical_list[[scale]] <- empirical_object
 }
+is.na(empirical_list)
 
+# Assign to df_cosines once, now that lengths match exactly
+df_cosines$empirical_corr <- empirical_list
 
 #logic above
     #try to load dataset using df <- dataset$table(df_cosines$scale_id[7])$to_tibble()
@@ -278,7 +283,7 @@ for (scale in seq_len(nrow(df_cosines))) {
         #- second, pivot datasets. All of them are in long format, meaning that, for each item, there are as many rows as respondents. 
         #   we want the dataset in wide format, where id (i.e., respondents) are rows and iem are columns
         # third, compute correlations, specifically:
-            # if dataset has wave, correlations are computed separate per wave and then an average corr matrix is calculated from the wave-specific correlations
+            # if dataset has wave, correlations are computed separate per wave and then stored as a list of corr matrices from the wave-specific correlations
             # if dataset does not have wave, correlations are computed normally
             # if length of unique resp (excluding NA) is lower than 7 but higher than 2, use polychoric correlations
             # if length of unique resp (excluding NA) is == 2, use pearson correlations
@@ -286,60 +291,5 @@ for (scale in seq_len(nrow(df_cosines))) {
         # insert empirical correlation matrix at the corresponding cell in the empirical_corr column
 
 is.na(df_cosines$empirical_corr)
-df_cosines$empirical_corr[1]
 
-
-warnings()
-empirical_mat
-#Warning messages:
-#1: Could not load dataset for scale_id = 360emergencymed_azami_2024; setting empirical_corr to NA
-#2: No or too few common items across waves for scale_id = coach_chen_2022_hdrs
-#3: No or too few common items across waves for scale_id = coach_chen_2022_phq9
-#4: Could not load dataset for scale_id = fcv19s_hossain_2022_anxiety; setting empirical_corr to NA
-#5: Could not load dataset for scale_id = fcv19s_hossain_2022_depression; setting empirical_corr to NA
-#6: Correlation computation failed for scale_id = gilbert_meta_1
-#7: Correlation computation failed for scale_id = gilbert_meta_100
-#8: Correlation computation failed for scale_id = gilbert_meta_11
-#9: Correlation computation failed for scale_id = gilbert_meta_12
-#10: No or too few common items across waves for scale_id = gilbert_meta_34
-#11:     Correlation failed for wave = 0 in scale_id = gilbert_meta_49
-#12:     Correlation failed for wave = 1 in scale_id = gilbert_meta_49
-#13:     Correlation failed for wave = 2 in scale_id = gilbert_meta_49
-#14: No valid correlation matrices for any wave in scale_id = gilbert_meta_49
-#15:     Correlation failed for wave = 0 in scale_id = gilbert_meta_53
-#16:     Correlation failed for wave = 1 in scale_id = gilbert_meta_53
-#17: No valid correlation matrices for any wave in scale_id = gilbert_meta_53
-#18: No or too few common items across waves for scale_id = gilbert_meta_54
-#19:     Correlation failed for wave = 0 in scale_id = gilbert_meta_56
-#20:     Correlation failed for wave = 1 in scale_id = gilbert_meta_56
-#21: No valid correlation matrices for any wave in scale_id = gilbert_meta_56
-#22: No or too few common items across waves for scale_id = gilbert_meta_57
-#23: No or too few common items across waves for scale_id = gilbert_meta_59
-#24: No or too few common items across waves for scale_id = gilbert_meta_62
-#25: Correlation computation failed for scale_id = gilbert_meta_7
-#26: Correlation computation failed for scale_id = gilbert_meta_8
-#27:     Correlation failed for wave = 0 in scale_id = gilbert_meta_88
-#28:     Correlation failed for wave = 1 in scale_id = gilbert_meta_88
-#29: No valid correlation matrices for any wave in scale_id = gilbert_meta_88
-#30:     Correlation failed for wave = 0 in scale_id = gilbert_meta_89
-#31:     Correlation failed for wave = 1 in scale_id = gilbert_meta_89
-#32: No valid correlation matrices for any wave in scale_id = gilbert_meta_89
-#33:     Correlation failed for wave = 1 in scale_id = gilbert_meta_90
-#34: No valid correlation matrices for any wave in scale_id = gilbert_meta_90
-#35: No or too few common items across waves for scale_id = gilbert_meta_91
-#36: No or too few common items across waves for scale_id = gilbert_meta_92
-#37: No or too few common items across waves for scale_id = oxfordcovid_xue_2024_gad
-#38:     Correlation failed for wave = 0 in scale_id = oxfordcovid_xue_2024_mh
-#39:     Correlation failed for wave = 17 in scale_id = oxfordcovid_xue_2024_mh
-#40:     Correlation failed for wave = 23 in scale_id = oxfordcovid_xue_2024_mh
-#41: No valid correlation matrices for any wave in scale_id = oxfordcovid_xue_2024_mh
-#42: No or too few common items across waves for scale_id = oxfordcovid_xue_2024_phq
-#43: Values from `resp` are not uniquely identified; output will contain list-cols.
-#• Use `values_fn = list` to suppress this warning.
-#• Use `values_fn = {summary_fun}` to summarise duplicates.
-#• Use the following dplyr code to identify duplicates.
-#  {data} |>
-#  dplyr::summarise(n = dplyr::n(), .by = c(id, item)) |>
-#  dplyr::filter(n > 1L)
-#44: Correlation computation failed for scale_id = political_psychology
-#45: Correlation computation failed for scale_id = spanishmegastudy
+write.csv(df_cosines, 'cosine_and_corr.csv')
