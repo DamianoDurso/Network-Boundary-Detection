@@ -52,7 +52,7 @@ vector_to_square_matrix <- function(x) {
 
 # 1 Load Data
 df_cosines <- read.csv(
-  "./Network-Boundary-Detection/cosine_scales.csv",
+  "cosine_scales.csv",
   stringsAsFactors = FALSE
 )
 
@@ -66,7 +66,7 @@ for (col in model_cols) {
   df_cosines[[col]] <- lapply(df_cosines[[col]], vector_to_square_matrix)
 }
 #check one
-dim(gpt3_large_mats[[length(gpt3_large_mats)]])  # should be n x n
+dim(df_cosines$gpt3.large[[length(df_cosines)]])  # should be n x n
 
 # Extract empirical, and compute correlations and store in empirical col cell
 # 
@@ -261,8 +261,7 @@ for (scale in seq_len(nrow(df_cosines))) {
       warning("Correlation computation failed for scale_id = ", scale_id)
       empirical_list[[scale]] <- NA
       next
-    }
-    
+    }  
     empirical_object <- empirical_mat
   }
   
@@ -295,4 +294,9 @@ is.na(df_cosines$empirical_corr)
 #Example calculate corr for wave data
 cor(as.numeric(df_cosines$gpt3.large[2][[1]]), as.numeric(df_cosines$empirical_corr[[2]]$`2`))
 
-write.csv(df_cosines, 'cosine_and_corr.csv')
+
+# write
+saveRDS(df_cosines, "cosine_and_corr.rds")
+
+# read
+df_cosines2 <- readRDS("cosine_and_corr.rds")
