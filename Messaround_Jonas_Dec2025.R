@@ -32,12 +32,110 @@ class(data)
 
 
 # --------------------------------------------
-# -------- Processing ------------------------
+# -------- Processing Damiano ----------------
 # --------------------------------------------
+
+# Processing logic
+# Check if there is both empirical corr matrix and gpt.large matrix
+# - To extract gpt.large matrix you can do data$gpt3.large[row][[1]]
+# - To extract empirical corr we need to do extra processing steps
+#   - Check if empirical corr for that row is a list as length(data$empirical_corr[[row]])
+#     - If yes, then compute corr for all elements in the list with gpt.large embeddings by doing cor(as.numeric(data$gpt3.large[row][[1]]), as.numeric(data$empirical_corr[[row]]$`element_of_the_list`))
+#     - If no, compute corr for the only element in the list
+#     - Add correlation coefficient (or average in case of multiple elements in the list) to the data in the corr_coeff column
+
+## Assumes `data` has:
+## - data$gpt3.large : list-column where each element is a numeric vector
+## - data$empirical_corr : list-column where each element is either
+##     * a single numeric vector, or
+##     * a list of numeric vectors
+## We create/overwrite data$corr_coeff
+
+# Note that the code below aggregates for multiple-waves datasets 
+# but we could consider calculating separately for each wave and report them
+
+# Helper: recursively extract all numeric vectors from any structure
+extract_numeric_vectors <- function(x) {
+  if (is.null(x) || length(x) == 0) {
+    return(list())
+  }
+  
+  # If x is atomic and numeric/coercible, treat it as a single vector
+  if (is.atomic(x) && !is.list(x)) {
+    return(list(as.numeric(x)))
+  }
+  
+  # If x is a list, flatten recursively
+  if (is.list(x)) {
+    out <- lapply(x, extract_numeric_vectors)
+    # flatten one level
+    return(unlist(out, recursive = FALSE))
+  }
+  
+  # Fallback: not usable → skip
+  list()
+}
+
+# Compute correlation for a single row
+compute_corr_for_row <- function(empirical_entry, gpt_vec) {
+
+  # Normalize GPT vector
+  gpt_vec <- as.numeric(gpt_vec)
+
+  # Extract all numeric vectors from empirical entry
+  vec_list <- extract_numeric_vectors(empirical_entry)
+
+  # If nothing extracted → NA
+  if (length(vec_list) == 0) {
+    return(NA_real_)
+  }
+
+  # Compute correlations safely
+  corrs <- vapply(
+    vec_list,
+    function(v) {
+      v <- as.numeric(v)
+      # Must match length and have some variance
+      if (length(v) != length(gpt_vec) || length(unique(v)) < 2) {
+        return(NA_real_)
+      }
+      suppressWarnings(cor(gpt_vec, v))
+    },
+    numeric(1)
+  )
+
+  # If all NA → NA
+  if (all(is.na(corrs))) {
+    return(NA_real_)
+  }
+
+  # Average non-NA correlations
+  mean(corrs, na.rm = TRUE)
+}
+
+# Apply across rows
+data$corr_coeff <- vapply(
+  seq_len(nrow(data)),
+  function(i) {
+    gpt_vec <- data$gpt3.large[[i]]
+    empirical_entry <- data$empirical_corr[[i]]
+    compute_corr_for_row(empirical_entry, gpt_vec)
+  },
+  numeric(1)
+)
+
+mean(data$corr_coeff, na.rm =TRUE)
+
+# --------------------------------------------
+# -------- Processing Jonas ----------------
+# --------------------------------------------
+
 
 # ---- Subset: Actually having Emp Cors ---
 data[1, ]$empirical_corr # Missing with NA
 data[8, ]$empirical_corr # Missing with NULL
+
+cor(as.numeric(data$gpt3.large[2][[1]]), as.numeric(data$empirical_corr[[2]]$`1`))
 
 N <- nrow(data)
 ind_OK <- rep(NA, N)
