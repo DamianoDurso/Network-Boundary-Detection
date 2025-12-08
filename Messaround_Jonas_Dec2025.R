@@ -52,7 +52,7 @@ nrow(data_noNA)
 Ns <- nrow(data_noNA)
 n_scales <- rep(NA, Ns)
 for(i in 1:Ns) {
-  # In case there are several scales; my god, fucking horrible to reconstruct this^^
+  # In case there are several scales; my god, full disaster mode to reconstruct this^^
   if(!is.null(dim(data_noNA[i, ]$empirical_corr[[1]][[1]]))) {
     n_scales[i] <- length(data_noNA[i, ]$empirical_corr[[1]])
   } else {
