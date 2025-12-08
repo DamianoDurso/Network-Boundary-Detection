@@ -17,19 +17,8 @@
 
 data <- readRDS("cosine_and_corr.rds")
 dim(data)
-
 colnames(data)
-
-data[1,2]
-
 class(data)
-
-
-# View(data)
-
-
-
-
 
 # --------------------------------------------
 # -------- Processing Damiano ----------------
@@ -51,7 +40,7 @@ class(data)
 ##     * a list of numeric vectors
 ## We create/overwrite data$corr_coeff
 
-# Note that the code below aggregates for multiple-waves datasets 
+# Note that the code below aggregates for multiple-waves datasets
 # but we could consider calculating separately for each wave and report them
 
 # Helper: recursively extract all numeric vectors from any structure
@@ -59,19 +48,20 @@ extract_numeric_vectors <- function(x) {
   if (is.null(x) || length(x) == 0) {
     return(list())
   }
-  
+
   # If x is atomic and numeric/coercible, treat it as a single vector
   if (is.atomic(x) && !is.list(x)) {
     return(list(as.numeric(x)))
   }
-  
+
   # If x is a list, flatten recursively
   if (is.list(x)) {
     out <- lapply(x, extract_numeric_vectors)
     # flatten one level
+    # return(unlist(out, recursive = FALSE))
     return(unlist(out, recursive = FALSE))
   }
-  
+
   # Fallback: not usable → skip
   list()
 }
@@ -81,6 +71,7 @@ compute_corr_for_row <- function(empirical_entry, gpt_vec) {
 
   # Normalize GPT vector
   gpt_vec <- as.numeric(gpt_vec)
+  gpt_vec[gpt_vec==1] <- NA # @Damiano: No diagonals
 
   # Extract all numeric vectors from empirical entry
   vec_list <- extract_numeric_vectors(empirical_entry)
@@ -99,7 +90,8 @@ compute_corr_for_row <- function(empirical_entry, gpt_vec) {
       if (length(v) != length(gpt_vec) || length(unique(v)) < 2) {
         return(NA_real_)
       }
-      suppressWarnings(cor(gpt_vec, v))
+      v[v==1] <- NA # @Damiano: No diagonals
+      suppressWarnings(cor(gpt_vec, v, use = "pairwise.complete.obs"))
     },
     numeric(1)
   )
@@ -113,18 +105,37 @@ compute_corr_for_row <- function(empirical_entry, gpt_vec) {
   mean(corrs, na.rm = TRUE)
 }
 
-# Apply across rows
-data$corr_coeff <- vapply(
-  seq_len(nrow(data)),
-  function(i) {
-    gpt_vec <- data$gpt3.large[[i]]
-    empirical_entry <- data$empirical_corr[[i]]
-    compute_corr_for_row(empirical_entry, gpt_vec)
-  },
-  numeric(1)
-)
 
-mean(data$corr_coeff, na.rm =TRUE)
+# Apply across rows [@Damiano: Made a function out of this]
+GetCors <- function(data, model) {
+
+  vapply(
+    seq_len(nrow(data)),
+    function(i) {
+      gpt_vec <- data[[model]][[i]]
+      empirical_entry <- data$empirical_corr[[i]] # This can contain more than one
+      compute_corr_for_row(empirical_entry, gpt_vec)
+    },
+    numeric(1)
+  )
+
+} # eoF
+
+
+
+### Jonas continues here
+v_models <- colnames(data)[2:8]
+Nm <- length(v_models) # Number of models
+m_cors <- matrix(NA, nrow=nrow(data), ncol=Nm)
+for(i in 1:Nm) m_cors[, i] <- GetCors(data = data, v_models[i])
+
+m_cors <- as.data.frame(m_cors)
+colnames(m_cors) <- v_models
+rownames(m_cors) <- data$scale_id
+
+round(m_cors, 2)
+
+
 
 # --------------------------------------------
 # -------- Processing Jonas ----------------
