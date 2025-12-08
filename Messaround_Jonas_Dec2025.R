@@ -67,11 +67,13 @@ extract_numeric_vectors <- function(x) {
 }
 
 # Compute correlation for a single row
-compute_corr_for_row <- function(empirical_entry, gpt_vec) {
+compute_corr_for_row <- function(empirical_entry, gpt_vec, abs=FALSE) {
 
   # Normalize GPT vector
   gpt_vec <- as.numeric(gpt_vec)
   gpt_vec[gpt_vec==1] <- NA # @Damiano: No diagonals
+
+  if(abs) gpt_vec <- abs(gpt_vec)
 
   # Extract all numeric vectors from empirical entry
   vec_list <- extract_numeric_vectors(empirical_entry)
@@ -91,6 +93,9 @@ compute_corr_for_row <- function(empirical_entry, gpt_vec) {
         return(NA_real_)
       }
       v[v==1] <- NA # @Damiano: No diagonals
+
+      if(abs) v <- abs(v)
+
       suppressWarnings(cor(gpt_vec, v, use = "pairwise.complete.obs"))
     },
     numeric(1)
@@ -107,14 +112,14 @@ compute_corr_for_row <- function(empirical_entry, gpt_vec) {
 
 
 # Apply across rows [@Damiano: Made a function out of this]
-GetCors <- function(data, model) {
+GetCors <- function(data, model, abs=FALSE) {
 
   vapply(
     seq_len(nrow(data)),
     function(i) {
       gpt_vec <- data[[model]][[i]]
       empirical_entry <- data$empirical_corr[[i]] # This can contain more than one
-      compute_corr_for_row(empirical_entry, gpt_vec)
+      compute_corr_for_row(empirical_entry, gpt_vec, abs=abs)
     },
     numeric(1)
   )
@@ -127,7 +132,7 @@ GetCors <- function(data, model) {
 v_models <- colnames(data)[2:8]
 Nm <- length(v_models) # Number of models
 m_cors <- matrix(NA, nrow=nrow(data), ncol=Nm)
-for(i in 1:Nm) m_cors[, i] <- GetCors(data = data, v_models[i])
+for(i in 1:Nm) m_cors[, i] <- GetCors(data = data, v_models[i], abs=TRUE)
 
 m_cors <- as.data.frame(m_cors)
 colnames(m_cors) <- v_models
